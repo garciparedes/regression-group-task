@@ -13,3 +13,29 @@
  * Name: Regresión - Práctica por grupos - Mantenimiento de Copiadoras
  *
  */
+
+filename reffile '/folders/myshortcuts/sas/regression-group-task/data/CH01PR20.csv';
+
+proc import datafile=reffile dbms=csv out=copiers;
+	getnames=yes;
+run;
+
+proc print data=copiers;
+run;
+
+proc reg data=copiers;
+	model y=x;
+	id x;
+run;
+
+data copiers_new_observation;
+	x = 5;
+run;
+
+proc append base=copiers data=copiers_new_observation;
+run;
+
+proc reg data=copiers;
+	model y = x /r clm;
+	id x;
+run;
