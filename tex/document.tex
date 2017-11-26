@@ -142,11 +142,13 @@
           Var\left[\widehat{\beta}_1\right] &= 0.23337
         \end{align}
 
-        \begin{align}
-          \text{IC} &= \left[\widehat{\beta}_1 \pm t_{n-2;1-\frac{\alpha}{2}}\sqrt{Var\left[\widehat{\beta}_1\right]}\right]\\
-          &= \left[15.03525 \pm 0.8121\right] \\
-          &= \left[14.2232, 15.8474\right]
-        \end{align}
+        \begin{equation}
+          \begin{split}
+            \text{I.Conf.} &= \left[\widehat{\beta}_1 \pm t_{n-2;1-\frac{\alpha}{2}}\sqrt{Var\left[\widehat{\beta}_1\right]}\right]\\
+            &= \left[15.03525 \pm 0.8121\right] \\
+            &= \left[14.2232, 15.8474\right]
+          \end{split}
+        \end{equation}
 
       \subsubsection{Conduct a \emph{t-test} to determine whether or not there is a linear association between $X$ and $Y$ here; control the $\alpha$ risk at $0.10$. State the alternatives, decision rule, and conclusion. What is the \emph{P-value} of your test?}
       \label{sec:copiers-2.5b}
@@ -154,19 +156,22 @@
         \paragraph{}
         [TODO ]
 
-        \begin{align}
+        \begin{equation}
           \begin{split}
             H_0&: \beta_1 = 0 \\
             H_1&: \beta_1 \neq 0
           \end{split}
-        \end{align}
+        \end{equation}
 
-        \begin{align}
-          \text{P-value} &= 2Pr\left[\abs{\frac{\widehat{\beta}_1 - 0}{\sqrt{Var\left[\widehat{\beta}_1\right]}}} > t_{n-2}\right] \\
-          &= 2Pr\left[\frac{15.03525}{0.48309} > t_{43}\right] \\
-          &= 2Pr\left[31.12 > t_{43}\right] \\
-          &< 0.0001
-        \end{align}
+        \begin{equation}
+          \begin{split}
+            \text{P-value} &= 2Pr\left[\abs{\frac{\widehat{\beta}_1 - 0}{\sqrt{Var\left[\widehat{\beta}_1\right]}}} > t_{n-2}\right] \\
+            &= 2Pr\left[\frac{15.03525}{0.48309} > t_{43}\right] \\
+            &= 2Pr\left[31.12 > t_{43}\right] \\
+            &< 0.0001
+          \end{split}
+        \end{equation}
+
 
       \subsubsection{Are your results in parts (\ref{sec:copiers-2.5a}) and (\ref{sec:copiers-2.5b}) consistent? Explain.}
 
@@ -179,19 +184,22 @@ than $14$ minutes for each additional copier that is serviced on a service call.
         \paragraph{}
         [TODO ]
 
-        \begin{align}
+        \begin{equation}
           \begin{split}
             H_0&: \beta_1 \leq 14 \\
             H_1&: \beta_1 > 14
           \end{split}
-        \end{align}
+        \end{equation}
 
-        \begin{align}
-          \text{P-value} &= Pr\left[\frac{\widehat{\beta}_1 - 14}{\sqrt{Var\left[\widehat{\beta}_1\right]}} > t_{n-2}\right] \\
-          &= Pr\left[\frac{1.03525}{0.48309} > t_{43}\right] \\
-          &= Pr\left[2.14297 > t_{43}\right] \\
-          &= 0.01890824
-        \end{align}
+
+        \begin{equation}
+          \begin{split}
+            \text{P-value} &= Pr\left[\frac{\widehat{\beta}_1 - 14}{\sqrt{Var\left[\widehat{\beta}_1\right]}} > t_{n-2}\right] \\
+            &= Pr\left[\frac{1.03525}{0.48309} > t_{43}\right] \\
+            &= Pr\left[2.14297 > t_{43}\right] \\
+            &= 0.01890824
+          \end{split}
+        \end{equation}
 
 
       \subsubsection{Does $\widehat{\beta}_0$ give any relevant information here about the start-up time on calls-i.e., about the time required before service work is begun on the copiers at a customer location?}
@@ -199,20 +207,22 @@ than $14$ minutes for each additional copier that is serviced on a service call.
         \paragraph{}
         [TODO ]
 
-        \begin{align}
+        \begin{equation}
           \begin{split}
             H_0&: \beta_0 = 0 \\
             H_1&: \beta_0 \neq 0
           \end{split}
-        \end{align}
+        \end{equation}
 
-        \begin{align}
-          \text{P-value} &= 2Pr\left[\abs{\frac{\widehat{\beta}_0 - 0}{\sqrt{Var\left[\widehat{\beta}_0\right]}}} > t_{n-2}\right] \\
-          &= 2Pr\left[\abs{\frac{-0.58016}{2.80394}} > t_{43}\right] \\
-          &= 2Pr\left[\abs{-0.21} > t_{43} \right] \\
-          &= 2Pr\left[0.21 > t_{43} \right] \\
-          &= 0.8371
-        \end{align}
+        \begin{equation}
+          \begin{split}
+            \text{P-value} &= 2Pr\left[\abs{\frac{\widehat{\beta}_0 - 0}{\sqrt{Var\left[\widehat{\beta}_0\right]}}} > t_{n-2}\right] \\
+            &= 2Pr\left[\abs{\frac{-0.58016}{2.80394}} > t_{43}\right] \\
+            &= 2Pr\left[\abs{-0.21} > t_{43} \right] \\
+            &= 2Pr\left[0.21 > t_{43} \right] \\
+            &= 0.8371
+          \end{split}
+        \end{equation}
 
     \setcounter{subsection}{13}
     \subsection{Refer to \textbf{Copier maintenance} Problem \ref{sec:e1-20}.}
@@ -234,15 +244,17 @@ than $14$ minutes for each additional copier that is serviced on a service call.
         \begin{align}
           \widehat{Y}_h &= \widehat{\beta}_0 +\widehat{\beta}_16+ \epsilon_h = 89.6313\\
           t_{n-2;1-\frac{\alpha}{2}} &= t_{43;0.95} = 1.681071\\
-          Var\left[\widehat{Y}_h \right]  &= 1.9499\\
+          Var\left[\widehat{Y}_h \right]  &= 1.9499
         \end{align}
 
-        \begin{align}
-          \text{IC} &= \left[\widehat{Y}_h \pm t_{n-2;1-\frac{\alpha}{2}}\sqrt{Var\left[\widehat{Y}_h \right]}\right] \\
-          &= \left[89.6313 \pm 1.681071 * \sqrt{1.9499}\right] \\
-          &= \left[89.6313 \pm 2.3475\right] \\
-          &= \left[87.2839, 91.9788\right]
-        \end{align}
+        \begin{equation}
+          \begin{split}
+            \text{I.Conf.} &= \left[\widehat{Y}_h \pm t_{n-2;1-\frac{\alpha}{2}}\sqrt{Var\left[\widehat{Y}_h \right]}\right] \\
+            &= \left[89.6313 \pm 1.681071 * \sqrt{1.9499}\right] \\
+            &= \left[89.6313 \pm 2.3475\right] \\
+            &= \left[87.2839, 91.9788\right]
+          \end{split}
+        \end{equation}
 
       \subsubsection{Obtain a $90\%$ prediction interval for the service time on the next call in which six copiers are serviced. Is your prediction interval wider than the corresponding confidence interval in part (\ref{sec:copiers-2.14a})? Should it be?}
 
@@ -252,15 +264,17 @@ than $14$ minutes for each additional copier that is serviced on a service call.
         \begin{align}
           \widehat{Y}_{pred} &= \widehat{\beta}_0 +\widehat{\beta}_16 + \epsilon_i = 89.6313\\
           t_{n-2;1-\frac{\alpha}{2}} &= t_{43;0.95} = 1.681071\\
-          Var\left[\widehat{Y}_{pred}\right] &= 79.45063 + 1.9499 = 81.40053\\
+          Var\left[\widehat{Y}_{pred}\right] &= \widehat{\sigma}^2 + Var\left[\widehat{Y}_h \right]  =79.45063 + 1.9499 = 81.40053
         \end{align}
 
-        \begin{align}
-          \text{IP} &= \left[\widehat{Y}_{pred} \pm z_{1-\frac{\alpha}{2}}\sqrt{Var\left[\widehat{Y}_{pred}\right]}\right] \\
-          &= \left[89.6313 \pm 1.681071 * \sqrt{81.40053}\right] \\
-          &= \left[89.6313 \pm 15.167\right] \\
-          &= \left[74.4643, 104.7983\right]
-        \end{align}
+        \begin{equation}
+          \begin{split}
+            \text{I.Pred.} &= \left[\widehat{Y}_{pred} \pm z_{1-\frac{\alpha}{2}}\sqrt{Var\left[\widehat{Y}_{pred}\right]}\right] \\
+            &= \left[89.6313 \pm 1.681071 * \sqrt{81.40053}\right] \\
+            &= \left[89.6313 \pm 15.167\right] \\
+            &= \left[74.4643, 104.7983\right]
+          \end{split}
+        \end{equation}
 
 
     \setcounter{subsection}{23}
@@ -272,30 +286,37 @@ than $14$ minutes for each additional copier that is serviced on a service call.
         \paragraph{}
         [TODO ]
 
-        \begin{align}
+        \begin{equation}
           \begin{split}
             H_0&: \beta_1 = 0 \\
             H_1&: \beta_1 \neq 0
           \end{split}
-        \end{align}
+        \end{equation}
 
-        \begin{align}
-          \text{P-value} &= Pr\left[\frac{MSM}{MSE} > F_{1;n-2}\right] \\
-          &= Pr\left[\frac{76960}{79.45063} > F_{1;43}\right] \\
-          &= Pr\left[968.66 > F_{1;43}\right] \\
-          &< 0.0001
-        \end{align}
+        \begin{equation}
+          \text{P-value} = Pr\left[\frac{MSM}{MSE} > F_{1;n-2}\right] =
+          Pr\left[\frac{76960}{79.45063} > F_{1;43}\right] =
+          Pr\left[968.66 > F_{1;43}\right] <
+          0.0001
+        \end{equation}
 
       \subsubsection{By how much, relatively, is the total variation in number of minutes spent on a call-reduced when the number of copiers serviced is introduced into the analysis? Is this a relatively small or large reduction? What is the name of this measure?}
 
         \paragraph{}
-        [TODO ]
+        [TODO coeficiente de determinación]
+
+        \begin{equation}
+          R^2 = \frac{SSM}{SST} = \frac{76960}{76960 + 3416.37702} = 0.9574
+        \end{equation}
 
       \subsubsection{Calculate $r$ and attach the appropriate sign.}
 
         \paragraph{}
         [TODO ]
 
+        \begin{equation}
+          r = + \sqrt{R^2} = 0.9785
+        \end{equation}
 
   \part{Ejercicios Montgomery:}
 
