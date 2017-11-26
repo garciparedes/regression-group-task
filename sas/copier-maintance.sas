@@ -24,7 +24,7 @@ proc print data=copiers;
 run;
 
 proc reg data=copiers;
-	model y=x;
+	model y=x /clb alpha=0.1;
 	id x;
 run;
 
@@ -36,6 +36,18 @@ proc append base=copiers data=copiers_new_observation;
 run;
 
 proc reg data=copiers;
-	model y = x /r clm;
+	model y = x /r;
+	id x;
+run;
+
+data copiers_new_observation;
+	x = 6;
+run;
+
+proc append base=copiers data=copiers_new_observation;
+run;
+
+proc reg data=copiers;
+	model y = x /r cli clm alpha=0.1;
 	id x;
 run;

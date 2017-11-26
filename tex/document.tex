@@ -42,9 +42,9 @@
         \end{figure}
 
         \begin{align}
-          \widehat{\beta}_0 &= 0.25419\\
-          \widehat{\beta}_1 &= 0.06368\\
-          \widehat{Y_i} &= \widehat{\beta}_0 +\widehat{\beta}_1X_i + \epsilon_i = 0.25419 + 0.06368 X_i + \epsilon_i
+          \widehat{\beta}_0 &= -0.58016\\
+          \widehat{\beta}_1 &= 15.03525\\
+          \widehat{Y_i} &= \widehat{\beta}_0 +\widehat{\beta}_1X_i + \epsilon_i = -0.58016 + 15.03525 X_i + \epsilon_i
         \end{align}
 
       \subsubsection{Plot the estimated regression function and the data. How well does the estimated regression function fit the data?}
@@ -81,21 +81,18 @@
           \begin{split}
             E\left[\widehat{Y} \mid X = 5\right] &=
             E\left[\widehat{\beta}_0 +\widehat{\beta}_1X + \epsilon \mid X = 5\right]
-            = 0.25419 + 0.06368 * 5 + 0 = 0.5726
+            = -0.58016 + 15.03525 * 5 + 0 = 74.5961
           \end{split}\\
           \begin{split}
             Var\left[\widehat{Y} \mid X = 5\right] &=
             \sigma^2\left(1 + \frac{1}{n} + \frac{(x^* - \bar{x})^2}{S_{xx}}\right) =
-            0.1695 ^ 2 =
-            0.02873025
+            1.1531 ^ 2 =
+            1.3298
           \end{split}
         \end{align}
 
     \setcounter{subsection}{23}
     \subsection{Refer to \textbf{Copier maintenance} Problem \ref{sec:e1-20}.}
-
-      \paragraph{}
-      [TODO ]
 
       \subsubsection{Obtain the residuals $e_i$ and the sum of the squared residuals $\sum_i e_i^2$. What is the relation between the sum of the squared residuals here and the quantity $Q$ in \eqref{eq:least-squares-criterion}?}
 
@@ -108,7 +105,7 @@
 
         \begin{align}
         \label{eq:least-squares-criterion}
-          Q &= \sum\limits_{i=1}^n(Y_i - \beta_0 - \beta_1X_i)^2 = 14.47043
+          Q &= \sum\limits_{i=1}^n(Y_i - \beta_0 - \beta_1X_i)^2 = 3416.37702
         \end{align}
 
 
@@ -122,10 +119,10 @@
 
         \begin{align}
           \begin{split}
-            \widehat{\sigma}^2 &= MSE = \frac{SSE}{n-2} = \frac{\sum_{i=1}^n(Y_i - \widehat{Y}_i)^2}{n-2} = \frac{14.47043}{45-2} = 0.33652
+            \widehat{\sigma}^2 &= MSE = \frac{SSE}{n-2} = \frac{\sum_{i=1}^n(Y_i - \widehat{Y}_i)^2}{n-2} = \frac{3416.37702}{45-2} = 79.45063
           \end{split} \\
           \begin{split}
-            \widehat{\sigma} &= \sqrt{\widehat{\sigma}^2} = \sqrt{0.33652} = 0.58010
+            \widehat{\sigma} &= \sqrt{\widehat{\sigma}^2} = \sqrt{79.45063} = 8.91351
           \end{split}
         \end{align}
 
@@ -133,19 +130,48 @@
     \setcounter{subsection}{4}
     \subsection{Refer to \textbf{Copier maintenance} Problem \ref{sec:e1-20}.}
 
-      \paragraph{}
-      [TODO ]
-
       \subsubsection{Estimate the change in the mean service time when the number of copiers serviced increases by one. Use a $90\%$ confidence interval. Interpret your confidence interval.}
       \label{sec:copiers-2.5a}
+
         \paragraph{}
-        [TODO ]
+        [TODO]
+
+        \begin{align}
+          \widehat{\beta}_1 &= 15.03525 \\
+          t_{n-2;1-\frac{\alpha}{2}} &= t_{43;0.95} = 1.681071\\
+          Var\left[\widehat{\beta}_1\right] &= 0.23337
+        \end{align}
+
+        \begin{equation}
+          \begin{split}
+            \text{I.Conf.} &= \left[\widehat{\beta}_1 \pm t_{n-2;1-\frac{\alpha}{2}}\sqrt{Var\left[\widehat{\beta}_1\right]}\right]\\
+            &= \left[15.03525 \pm 0.8121\right] \\
+            &= \left[14.2232, 15.8474\right]
+          \end{split}
+        \end{equation}
 
       \subsubsection{Conduct a \emph{t-test} to determine whether or not there is a linear association between $X$ and $Y$ here; control the $\alpha$ risk at $0.10$. State the alternatives, decision rule, and conclusion. What is the \emph{P-value} of your test?}
       \label{sec:copiers-2.5b}
 
         \paragraph{}
         [TODO ]
+
+        \begin{equation}
+          \begin{split}
+            H_0&: \beta_1 = 0 \\
+            H_1&: \beta_1 \neq 0
+          \end{split}
+        \end{equation}
+
+        \begin{equation}
+          \begin{split}
+            \text{P-value} &= 2Pr\left[\abs{\frac{\widehat{\beta}_1 - 0}{\sqrt{Var\left[\widehat{\beta}_1\right]}}} > t_{n-2}\right] \\
+            &= 2Pr\left[\frac{15.03525}{0.48309} > t_{43}\right] \\
+            &= 2Pr\left[31.12 > t_{43}\right] \\
+            &< 0.0001
+          \end{split}
+        \end{equation}
+
 
       \subsubsection{Are your results in parts (\ref{sec:copiers-2.5a}) and (\ref{sec:copiers-2.5b}) consistent? Explain.}
 
@@ -158,34 +184,101 @@ than $14$ minutes for each additional copier that is serviced on a service call.
         \paragraph{}
         [TODO ]
 
+        \begin{equation}
+          \begin{split}
+            H_0&: \beta_1 \leq 14 \\
+            H_1&: \beta_1 > 14
+          \end{split}
+        \end{equation}
+
+
+        \begin{equation}
+          \begin{split}
+            \text{P-value} &= Pr\left[\frac{\widehat{\beta}_1 - 14}{\sqrt{Var\left[\widehat{\beta}_1\right]}} > t_{n-2}\right] \\
+            &= Pr\left[\frac{1.03525}{0.48309} > t_{43}\right] \\
+            &= Pr\left[2.14297 > t_{43}\right] \\
+            &= 0.01890824
+          \end{split}
+        \end{equation}
+
+
       \subsubsection{Does $\widehat{\beta}_0$ give any relevant information here about the start-up time on calls-i.e., about the time required before service work is begun on the copiers at a customer location?}
 
         \paragraph{}
         [TODO ]
 
+        \begin{equation}
+          \begin{split}
+            H_0&: \beta_0 = 0 \\
+            H_1&: \beta_0 \neq 0
+          \end{split}
+        \end{equation}
+
+        \begin{equation}
+          \begin{split}
+            \text{P-value} &= 2Pr\left[\abs{\frac{\widehat{\beta}_0 - 0}{\sqrt{Var\left[\widehat{\beta}_0\right]}}} > t_{n-2}\right] \\
+            &= 2Pr\left[\abs{\frac{-0.58016}{2.80394}} > t_{43}\right] \\
+            &= 2Pr\left[\abs{-0.21} > t_{43} \right] \\
+            &= 2Pr\left[0.21 > t_{43} \right] \\
+            &= 0.8371
+          \end{split}
+        \end{equation}
+
     \setcounter{subsection}{13}
     \subsection{Refer to \textbf{Copier maintenance} Problem \ref{sec:e1-20}.}
 
-      \paragraph{}
-      [TODO ]
-
-      \subsubsection{Obtain a $90\%$ confidence interval for the mean gervice time on calls in which six copiers are serviced. Interpret your confidence interval.}
+      \subsubsection{Obtain a $90\%$ confidence interval for the mean service time on calls in which six copiers are serviced. Interpret your confidence interval.}
       \label{sec:copiers-2.14a}
+
+
+      \begin{figure}[!h]
+        \centering
+        \includegraphics[width=.85\textwidth]{copiers/regression-prediction2}
+        \caption{\emph{Salida SAS}: Mantenimiento de Copiadoras - Prediccion de Regresión Lineal Simple para $X = 6$}
+        \label{img:copiers-regression-prediction2}
+      \end{figure}
 
         \paragraph{}
         [TODO ]
+
+        \begin{align}
+          \widehat{Y}_h &= \widehat{\beta}_0 +\widehat{\beta}_16+ \epsilon_h = 89.6313\\
+          t_{n-2;1-\frac{\alpha}{2}} &= t_{43;0.95} = 1.681071\\
+          Var\left[\widehat{Y}_h \right]  &= 1.9499
+        \end{align}
+
+        \begin{equation}
+          \begin{split}
+            \text{I.Conf.} &= \left[\widehat{Y}_h \pm t_{n-2;1-\frac{\alpha}{2}}\sqrt{Var\left[\widehat{Y}_h \right]}\right] \\
+            &= \left[89.6313 \pm 1.681071 * \sqrt{1.9499}\right] \\
+            &= \left[89.6313 \pm 2.3475\right] \\
+            &= \left[87.2839, 91.9788\right]
+          \end{split}
+        \end{equation}
 
       \subsubsection{Obtain a $90\%$ prediction interval for the service time on the next call in which six copiers are serviced. Is your prediction interval wider than the corresponding confidence interval in part (\ref{sec:copiers-2.14a})? Should it be?}
 
         \paragraph{}
         [TODO ]
 
+        \begin{align}
+          \widehat{Y}_{pred} &= \widehat{\beta}_0 +\widehat{\beta}_16 + \epsilon_i = 89.6313\\
+          t_{n-2;1-\frac{\alpha}{2}} &= t_{43;0.95} = 1.681071\\
+          Var\left[\widehat{Y}_{pred}\right] &= \widehat{\sigma}^2 + Var\left[\widehat{Y}_h \right]  =79.45063 + 1.9499 = 81.40053
+        \end{align}
+
+        \begin{equation}
+          \begin{split}
+            \text{I.Pred.} &= \left[\widehat{Y}_{pred} \pm z_{1-\frac{\alpha}{2}}\sqrt{Var\left[\widehat{Y}_{pred}\right]}\right] \\
+            &= \left[89.6313 \pm 1.681071 * \sqrt{81.40053}\right] \\
+            &= \left[89.6313 \pm 15.167\right] \\
+            &= \left[74.4643, 104.7983\right]
+          \end{split}
+        \end{equation}
+
+
     \setcounter{subsection}{23}
     \subsection{Refer to \textbf{Copier maintenance} Problem \ref{sec:e1-20}.}
-
-
-      \paragraph{}
-      [TODO ]
 
       \setcounter{subsubsection}{1}
       \subsubsection{Conduct an \emph{F-test} to determine whether or not there is a linear association between time spent and number of copiers serviced; use $\alpha = 0.1$. State the alternatives, decision rule, and conclusion.}
@@ -193,16 +286,37 @@ than $14$ minutes for each additional copier that is serviced on a service call.
         \paragraph{}
         [TODO ]
 
+        \begin{equation}
+          \begin{split}
+            H_0&: \beta_1 = 0 \\
+            H_1&: \beta_1 \neq 0
+          \end{split}
+        \end{equation}
+
+        \begin{equation}
+          \text{P-value} = Pr\left[\frac{MSM}{MSE} > F_{1;n-2}\right] =
+          Pr\left[\frac{76960}{79.45063} > F_{1;43}\right] =
+          Pr\left[968.66 > F_{1;43}\right] <
+          0.0001
+        \end{equation}
+
       \subsubsection{By how much, relatively, is the total variation in number of minutes spent on a call-reduced when the number of copiers serviced is introduced into the analysis? Is this a relatively small or large reduction? What is the name of this measure?}
 
         \paragraph{}
-        [TODO ]
+        [TODO coeficiente de determinación]
+
+        \begin{equation}
+          R^2 = \frac{SSM}{SST} = \frac{76960}{76960 + 3416.37702} = 0.9574
+        \end{equation}
 
       \subsubsection{Calculate $r$ and attach the appropriate sign.}
 
         \paragraph{}
         [TODO ]
 
+        \begin{equation}
+          r = + \sqrt{R^2} = 0.9785
+        \end{equation}
 
   \part{Ejercicios Montgomery:}
 
@@ -257,8 +371,28 @@ proc reg data=copiers;
 run;
       \end{minted}
       \caption{\emph{Código SAS:} Mantenimiento de Copiadoras - Predicción para $X = 5$.}
-      \label{code:sas-copiers-2}
+      \label{code:sas-copiers-3}
     \end{figure}
+
+    \begin{figure}[!h]
+      \centering
+      \begin{minted}[frame=single,framesep=5pt]{sas}
+data copiers_new_observation;
+  x = 6;
+run;
+
+proc append base=copiers data=copiers_new_observation;
+run;
+
+proc reg data=copiers;
+  model y = x /r cli clm alpha=0.1;
+  id x;
+run;
+      \end{minted}
+      \caption{\emph{Código SAS:} Mantenimiento de Copiadoras - Predicción para $X = 6$.}
+      \label{code:sas-copiers-4}
+    \end{figure}
+
   %-----------------------------
   %  Bibliographic references
   %-----------------------------
