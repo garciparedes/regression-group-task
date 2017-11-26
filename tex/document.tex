@@ -134,13 +134,18 @@
       \label{sec:copiers-2.5a}
 
         \paragraph{}
-        [TODO se pide intervalo de confianza del $90\%$ para $\widehat{\beta}_1$]
-
+        [TODO]
 
         \begin{align}
-          \left[\widehat{\beta}_1 \pm t_{n-2;1-\frac{\alpha}{2}}Var\left[\widehat{\beta}_1\right]\right]
+          \widehat{\beta}_1 &= 15.03525 \\
+          t_{n-2;1-\frac{\alpha}{2}} &= \\
+          Var\left[\widehat{\beta}_1\right] &=
         \end{align}
 
+        \begin{align}
+          \text{IC} &= \left[\widehat{\beta}_1 \pm t_{n-2;1-\frac{\alpha}{2}}\sqrt{Var\left[\widehat{\beta}_1\right]}\right]\\
+          &=
+        \end{align}
 
       \subsubsection{Conduct a \emph{t-test} to determine whether or not there is a linear association between $X$ and $Y$ here; control the $\alpha$ risk at $0.10$. State the alternatives, decision rule, and conclusion. What is the \emph{P-value} of your test?}
       \label{sec:copiers-2.5b}
@@ -156,7 +161,7 @@
         \end{align}
 
         \begin{align}
-          Pr\left[\frac{\widehat{\beta}_1 - 0}{\sqrt{Var\left[\widehat{\beta}_1\right]}} > t_{n-2}\right]
+          \text{P-value} &= Pr\left[\frac{\widehat{\beta}_1 - 0}{\sqrt{Var\left[\widehat{\beta}_1\right]}} > t_{n-2;1-\frac{\alpha}{2}}\right]
         \end{align}
 
       \subsubsection{Are your results in parts (\ref{sec:copiers-2.5a}) and (\ref{sec:copiers-2.5b}) consistent? Explain.}
@@ -177,6 +182,10 @@ than $14$ minutes for each additional copier that is serviced on a service call.
           \end{split}
         \end{align}
 
+        \begin{align}
+          \text{P-value} &= Pr\left[\frac{\widehat{\beta}_1 - 14}{\sqrt{Var\left[\widehat{\beta}_1\right]}} > t_{n-2;1-\alpha}\right]
+        \end{align}
+
 
       \subsubsection{Does $\widehat{\beta}_0$ give any relevant information here about the start-up time on calls-i.e., about the time required before service work is begun on the copiers at a customer location?}
 
@@ -190,6 +199,10 @@ than $14$ minutes for each additional copier that is serviced on a service call.
           \end{split}
         \end{align}
 
+        \begin{align}
+          \text{P-value} &= Pr\left[\frac{\widehat{\beta}_0 - 0}{\sqrt{Var\left[\widehat{\beta}_0\right]}} > t_{n-2;1-\frac{\alpha}{2}}\right]
+        \end{align}
+
     \setcounter{subsection}{13}
     \subsection{Refer to \textbf{Copier maintenance} Problem \ref{sec:e1-20}.}
 
@@ -201,12 +214,12 @@ than $14$ minutes for each additional copier that is serviced on a service call.
 
         \begin{align}
           \widehat{Y}_h &= \\
-          t_{n-2;1-\frac{\alpha}{2}} &= t_{43,0.95} = \\
+          t_{n-2;1-\frac{\alpha}{2}} &= t_{43;0.95} = \\
           Var\left[\widehat{Y}_h \right] &= \sigma = \\
         \end{align}
 
         \begin{align}
-          \left[\widehat{Y}_h \pm t_{n-2;1-\frac{\alpha}{2}}Var\left[\widehat{Y}_h \right]\right]
+          \text{IC} &= \left[\widehat{Y}_h \pm t_{n-2;1-\frac{\alpha}{2}}Var\left[\widehat{Y}_h \right]\right]
         \end{align}
 
       \subsubsection{Obtain a $90\%$ prediction interval for the service time on the next call in which six copiers are serviced. Is your prediction interval wider than the corresponding confidence interval in part (\ref{sec:copiers-2.14a})? Should it be?}
@@ -221,7 +234,7 @@ than $14$ minutes for each additional copier that is serviced on a service call.
         \end{align}
 
         \begin{align}
-          \left[E\left[\widehat{Y}_h\right] \pm z_{1-\frac{\alpha}{2}}Var\left[\widehat{Y}_h\right]\right]
+          \text{IP} &= \left[E\left[\widehat{Y}_h\right] \pm z_{1-\frac{\alpha}{2}}Var\left[\widehat{Y}_h\right]\right]
         \end{align}
 
 
@@ -239,6 +252,12 @@ than $14$ minutes for each additional copier that is serviced on a service call.
             H_0&: \beta_1 = 0 \\
             H_1&: \beta_1 \neq 0
           \end{split}
+        \end{align}
+
+        \begin{align}
+          \text{P-value} &= Pr\left[\frac{MSM}{MSE} > F_{1;n-2;1-\frac{\alpha}{2}}\right] \\
+          &= Pr\left[\frac{76960}{79.45063} > F_{1;43;0.95}\right] \\
+          &< 0.0001
         \end{align}
 
       \subsubsection{By how much, relatively, is the total variation in number of minutes spent on a call-reduced when the number of copiers serviced is introduced into the analysis? Is this a relatively small or large reduction? What is the name of this measure?}
