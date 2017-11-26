@@ -138,13 +138,14 @@
 
         \begin{align}
           \widehat{\beta}_1 &= 15.03525 \\
-          t_{n-2;1-\frac{\alpha}{2}} &= \\
-          Var\left[\widehat{\beta}_1\right] &=
+          t_{n-2;1-\frac{\alpha}{2}} &= t_{43;0.95} = 1.681071\\
+          Var\left[\widehat{\beta}_1\right] &= 0.23337
         \end{align}
 
         \begin{align}
           \text{IC} &= \left[\widehat{\beta}_1 \pm t_{n-2;1-\frac{\alpha}{2}}\sqrt{Var\left[\widehat{\beta}_1\right]}\right]\\
-          &=
+          &= \left[15.03525 \pm 0.8121\right] \\
+          &= \left[14.2232, 15.8474\right]
         \end{align}
 
       \subsubsection{Conduct a \emph{t-test} to determine whether or not there is a linear association between $X$ and $Y$ here; control the $\alpha$ risk at $0.10$. State the alternatives, decision rule, and conclusion. What is the \emph{P-value} of your test?}
@@ -161,7 +162,10 @@
         \end{align}
 
         \begin{align}
-          \text{P-value} &= Pr\left[\frac{\widehat{\beta}_1 - 0}{\sqrt{Var\left[\widehat{\beta}_1\right]}} > t_{n-2;1-\frac{\alpha}{2}}\right]
+          \text{P-value} &= 2Pr\left[\abs{\frac{\widehat{\beta}_1 - 0}{\sqrt{Var\left[\widehat{\beta}_1\right]}}} > t_{n-2}\right] \\
+          &= 2Pr\left[\frac{15.03525}{0.48309} > t_{43}\right] \\
+          &= 2Pr\left[31.12 > t_{43}\right] \\
+          &< 0.0001
         \end{align}
 
       \subsubsection{Are your results in parts (\ref{sec:copiers-2.5a}) and (\ref{sec:copiers-2.5b}) consistent? Explain.}
@@ -183,7 +187,10 @@ than $14$ minutes for each additional copier that is serviced on a service call.
         \end{align}
 
         \begin{align}
-          \text{P-value} &= Pr\left[\frac{\widehat{\beta}_1 - 14}{\sqrt{Var\left[\widehat{\beta}_1\right]}} > t_{n-2;1-\alpha}\right]
+          \text{P-value} &= Pr\left[\frac{\widehat{\beta}_1 - 14}{\sqrt{Var\left[\widehat{\beta}_1\right]}} > t_{n-2}\right] \\
+          &= Pr\left[\frac{1.03525}{0.48309} > t_{43}\right] \\
+          &= Pr\left[2.14297 > t_{43}\right] \\
+          &= 0.01890824
         \end{align}
 
 
@@ -200,7 +207,11 @@ than $14$ minutes for each additional copier that is serviced on a service call.
         \end{align}
 
         \begin{align}
-          \text{P-value} &= Pr\left[\frac{\widehat{\beta}_0 - 0}{\sqrt{Var\left[\widehat{\beta}_0\right]}} > t_{n-2;1-\frac{\alpha}{2}}\right]
+          \text{P-value} &= 2Pr\left[\abs{\frac{\widehat{\beta}_0 - 0}{\sqrt{Var\left[\widehat{\beta}_0\right]}}} > t_{n-2}\right] \\
+          &= 2Pr\left[\abs{\frac{-0.58016}{2.80394}} > t_{43}\right] \\
+          &= 2Pr\left[\abs{-0.21} > t_{43} \right] \\
+          &= 2Pr\left[0.21 > t_{43} \right] \\
+          &= 0.8371
         \end{align}
 
     \setcounter{subsection}{13}
@@ -209,32 +220,46 @@ than $14$ minutes for each additional copier that is serviced on a service call.
       \subsubsection{Obtain a $90\%$ confidence interval for the mean service time on calls in which six copiers are serviced. Interpret your confidence interval.}
       \label{sec:copiers-2.14a}
 
+
+      \begin{figure}[!h]
+        \centering
+        \includegraphics[width=.85\textwidth]{copiers/regression-prediction2}
+        \caption{\emph{Salida SAS}: Mantenimiento de Copiadoras - Prediccion de Regresión Lineal Simple para $X = 6$}
+        \label{img:copiers-regression-prediction2}
+      \end{figure}
+
         \paragraph{}
-        [TODO intervalo de confianza para $X=6$]
+        [TODO ]
 
         \begin{align}
-          \widehat{Y}_h &= \\
-          t_{n-2;1-\frac{\alpha}{2}} &= t_{43;0.95} = \\
-          Var\left[\widehat{Y}_h \right] &= \sigma = \\
+          \widehat{Y}_h &= \widehat{\beta}_0 +\widehat{\beta}_16+ \epsilon_h = 89.6313\\
+          t_{n-2;1-\frac{\alpha}{2}} &= t_{43;0.95} = 1.681071\\
+          Var\left[\widehat{Y}_h \right]  &= 1.9499\\
         \end{align}
 
         \begin{align}
-          \text{IC} &= \left[\widehat{Y}_h \pm t_{n-2;1-\frac{\alpha}{2}}Var\left[\widehat{Y}_h \right]\right]
+          \text{IC} &= \left[\widehat{Y}_h \pm t_{n-2;1-\frac{\alpha}{2}}\sqrt{Var\left[\widehat{Y}_h \right]}\right] \\
+          &= \left[89.6313 \pm 1.681071 * \sqrt{1.9499}\right] \\
+          &= \left[89.6313 \pm 2.3475\right] \\
+          &= \left[87.2839, 91.9788\right]
         \end{align}
 
       \subsubsection{Obtain a $90\%$ prediction interval for the service time on the next call in which six copiers are serviced. Is your prediction interval wider than the corresponding confidence interval in part (\ref{sec:copiers-2.14a})? Should it be?}
 
         \paragraph{}
-        [TODO intervalo de predicción para $X=6$]
+        [TODO ]
 
         \begin{align}
-          E\left[\widehat{Y}_h\right] &= \\
-          z_{1-\frac{\alpha}{2}} &= z_{0.95} = \\
-          Var\left[\widehat{Y}_h\right] &= \sigma = \\
+          \widehat{Y}_{pred} &= \widehat{\beta}_0 +\widehat{\beta}_16 + \epsilon_i = 89.6313\\
+          t_{n-2;1-\frac{\alpha}{2}} &= t_{43;0.95} = 1.681071\\
+          Var\left[\widehat{Y}_{pred}\right] &= 79.45063 + 1.9499 = 81.40053\\
         \end{align}
 
         \begin{align}
-          \text{IP} &= \left[E\left[\widehat{Y}_h\right] \pm z_{1-\frac{\alpha}{2}}Var\left[\widehat{Y}_h\right]\right]
+          \text{IP} &= \left[\widehat{Y}_{pred} \pm z_{1-\frac{\alpha}{2}}\sqrt{Var\left[\widehat{Y}_{pred}\right]}\right] \\
+          &= \left[89.6313 \pm 1.681071 * \sqrt{81.40053}\right] \\
+          &= \left[89.6313 \pm 15.167\right] \\
+          &= \left[74.4643, 104.7983\right]
         \end{align}
 
 
@@ -255,8 +280,9 @@ than $14$ minutes for each additional copier that is serviced on a service call.
         \end{align}
 
         \begin{align}
-          \text{P-value} &= Pr\left[\frac{MSM}{MSE} > F_{1;n-2;1-\frac{\alpha}{2}}\right] \\
-          &= Pr\left[\frac{76960}{79.45063} > F_{1;43;0.95}\right] \\
+          \text{P-value} &= Pr\left[\frac{MSM}{MSE} > F_{1;n-2}\right] \\
+          &= Pr\left[\frac{76960}{79.45063} > F_{1;43}\right] \\
+          &= Pr\left[968.66 > F_{1;43}\right] \\
           &< 0.0001
         \end{align}
 
@@ -324,8 +350,28 @@ proc reg data=copiers;
 run;
       \end{minted}
       \caption{\emph{Código SAS:} Mantenimiento de Copiadoras - Predicción para $X = 5$.}
-      \label{code:sas-copiers-2}
+      \label{code:sas-copiers-3}
     \end{figure}
+
+    \begin{figure}[!h]
+      \centering
+      \begin{minted}[frame=single,framesep=5pt]{sas}
+data copiers_new_observation;
+  x = 6;
+run;
+
+proc append base=copiers data=copiers_new_observation;
+run;
+
+proc reg data=copiers;
+  model y = x /r cli clm alpha=0.1;
+  id x;
+run;
+      \end{minted}
+      \caption{\emph{Código SAS:} Mantenimiento de Copiadoras - Predicción para $X = 6$.}
+      \label{code:sas-copiers-4}
+    \end{figure}
+
   %-----------------------------
   %  Bibliographic references
   %-----------------------------
