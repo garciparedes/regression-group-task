@@ -36,6 +36,6 @@ proc append base=copiers data=copiers_new_observation;
 run;
 
 proc reg data=copiers;
-	model y = x /r clm;
+	model y = x /r;
 	id x;
 run;
