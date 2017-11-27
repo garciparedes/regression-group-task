@@ -17,7 +17,7 @@
 
   \begin{equation}
   \label{eq:simple-linear-regression-model}
-    y_i = \beta_0 + \beta_1x_8_i + \varepsilon_i
+    y_i = \beta_0 + \beta_1{x_8}_i + \varepsilon_i
   \end{equation}
   \paragraph{}
   Analizaremos el modelo de la ecuación \ref{eq:simple-linear-regression-model} mediante un estudio de regresión lineal simple, con $y$ como variable dependiente, $x_8$ como variable independiente, $\beta_0$ el intercepto, y $\beta_1$ la pendiente. $\varepsilon$ es el error aleatorio.
@@ -56,7 +56,7 @@
   Con la recta de regresión:
 
   \begin{equation}
-    y_i = 21.78825 -0.00703x_8_i + \varepsilon_i
+    y_i = 21.78825 -0.00703{x_8}_i + \varepsilon_i
   \end{equation}
 
   \paragraph{}
@@ -114,7 +114,6 @@
     \centering
     \includegraphics[width=.5\linewidth]{img/montgomery/anovatable.png}
     \caption{Tabla de análisis de la varianza}
-    \label{img:mont-anova}
   \end{figure}
 
   \paragraph{}
@@ -150,9 +149,108 @@
 
   \subsubsection{Determinar un intervalo de confianza de 95\% para la cantidad promedio de juegos ganados, si la distancia ganada por tierra por los contrarios se limita a 2000 yardas.}
 
+  \paragraph{}
+  Este apartado nos pide hacer una predicción de $y$ cuando $x_8=2000$. Este valor no se encuentra entre nuestras observaciones, pero si que está dentro del rango definido por el mínimo y el máximo de $x_8$ para las observaciones, por lo que podremos realizar esta predicción. Añadiremos manualmente a los datos una observación en la que solo rellenamos el valor de $x_8$. \textit{SAS} realizará la predicción sobre el valor de la variable dependiente $y$ para este valor de $x_8$ dado el modelo de regresión conseguido mediante las observaciones completas.
+
+  \paragraph{}
+  Para mostrar los intervalos de confianza para las predicciones, añadimos la opción \textit{CLI} al modelo del procedimiento \textit{REG}.
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=.5\linewidth]{img/montgomery/prediccion2000.png}
+    \caption{Intervalo de confianza del 95\% para la predicción de $x_8=2000$.}
+    \label{img:mont-prediccion2000}
+  \end{figure}
+
+  \paragraph{}
+  Como podemos ver, el valor predicho medio es $7,7381$ juegos ganados, y podemos afirmar con una confianza del 95\% que el valor real está entre $2,7242$ y $12,7519$ juegos ganados.
+
   \subsection{Supóngase que se quiere usar el modelo desarrollado en el problema 2.1 para pronosticar la cantidad de juegos que ganará un equipo si puede limitar los avances por tierra de sus contrarios a 1800 yardas. Determinar un estimado de punto de la cantidad de juegos ganados cuando $x_8=1800$. Determinar un intervalo de predicción de 90\% para la cantidad de juegos ganados.}
 
-  \part{Código Fuente}
+  \paragraph{}
+  Como el apartado \textbf{2.1.e}, este ejercicio requiere hacer una predicción de $y$. El valor de $x_8$ pedido no está en las observaciones, pero se encuentra en el rango definido por el mínimo y el máximo de observaciones para $x_8$. Añadimos una observación con valor $x_8=1800$, al igual que hicimos para el anterior apartado, para el cual \textit{SAS} realizará una predicción de $y$ dado el modelo de regresión simple. Para conseguir el intervalo del 90\% de confianza, definimos en las opciones del modelo el \textit{ALPHA} como igual a $0.1$.
 
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=.5\linewidth]{img/montgomery/prediccion1800.png}
+    \caption{Intervalo de confianza del 90\% para la predicción de $x_8=1800$.}
+    \label{img:mont-prediccion1800}
+  \end{figure}
+
+  \paragraph{}
+  El estimado de punto es $9,1431$ juegos ganados, y el intervalo nos permite afirmar con un 90\% de confianza que el valor real está entre $4,9364$ y $13,3497$ juegos ganados.
+
+
+    \part{Código Fuente}
+
+      \begin{figure}[!h]
+        \centering
+        \begin{minted}[frame=single,framesep=5pt]{sas}
+        FILENAME REFFILE '/folders/myfolders/data-table-B1.XLS';
+
+        PROC IMPORT DATAFILE=REFFILE
+	        DBMS=XLS
+	        OUT=WORK.IMPORT;
+	        GETNAMES=YES;
+        RUN;
+
+        DATA FUTBOL;
+          SET IMPORT;
+          DROP X1 X2 X3 X4 X5 X6 X7 X9;
+        RUN;
+      \end{minted}
+      \caption{\emph{Código SAS:} Ejercicio 2.1 del Montgomery - Importación y preprocesado del conjunto de datos.}
+      \label{code:sas-mont-1}
+    \end{figure}
+
+
+    \begin{figure}[!h]
+      \centering
+      \begin{minted}[frame=single,framesep=5pt]{sas}
+        PROC REG DATA=FUTBOL;
+          MODEL Y=X8/CLB;
+        RUN;
+    \end{minted}
+    \caption{\emph{Código SAS:} Ejercicio 2.1 del Montgomery - Programa de Regresión Lineal Simple con intervalo para los parámetros.}
+    \label{code:sas-mont-2}
+  \end{figure}
+
+  \begin{figure}[!h]
+    \centering
+    \begin{minted}[frame=single,framesep=5pt]{sas}
+    DATA AUX;
+      INPUT X8;
+      CARDS;
+      2000
+      1800
+    RUN;
+
+    PROC APPEND BASE=FUTBOL DATA=AUX; RUN;
+  \end{minted}
+  \caption{\emph{Código SAS:} Ejercicio 2.1 y 2.2 del Montgomery - Addición de valores para predicción.}
+  \label{code:sas-mont-3}
+\end{figure}
+
+\begin{figure}[!h]
+  \centering
+  \begin{minted}[frame=single,framesep=5pt]{sas}
+    PROC REG DATA=FUTBOL;
+      MODEL Y=X8/CLI;
+    RUN;
+  \end{minted}
+  \caption{\emph{Código SAS:} Ejercicio 2.1 del Montgomery - Obtención de valores predichos con intervalos de confianza del 95\%.}
+  \label{code:sas-mont-4}
+  \end{figure}
+
+  \begin{figure}[!h]
+    \centering
+    \begin{minted}[frame=single,framesep=5pt]{sas}
+      PROC REG DATA=FUTBOL;
+        MODEL Y=X8/CLI ALPHA=0.1;
+      RUN;
+    \end{minted}
+    \caption{\emph{Código SAS:} Ejercicio 2.2 del Montgomery - Obtención de valores predichos con intervalos de confianza del 90\%.}
+    \label{code:sas-mont-5}
+    \end{figure}
 
 \end{document}
