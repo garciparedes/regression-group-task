@@ -304,10 +304,6 @@ than $14$ minutes for each additional copier that is serviced on a service call.
     \setcounter{subsection}{13}
     \subsection{Refer to \textbf{Copier maintenance} Problem \ref{sec:e1-20}.}
 
-      \subsubsection{Obtain a $90\%$ confidence interval for the mean service time on calls in which six copiers are serviced. Interpret your confidence interval.}
-      \label{sec:copiers-2.14a}
-
-
       \begin{figure}[!h]
         \centering
         \includegraphics[width=.85\textwidth]{copiers/regression-prediction2}
@@ -315,18 +311,25 @@ than $14$ minutes for each additional copier that is serviced on a service call.
         \label{img:copiers-regression-prediction2}
       \end{figure}
 
+      \subsubsection{Obtain a $90\%$ confidence interval for the mean service time on calls in which six copiers are serviced. Interpret your confidence interval.}
+      \label{sec:copiers-2.14a}
+
         \paragraph{}
-        [TODO ]
+        En este apartado, se pide obtener un intervalo de confianza del $90\%$ para la media de la variable dependiente $Y$ cuando la variable dependiente toma el valor $X=6$. Para ello, se ha utilizado el fragmento de código \emph{SAS} incluido en la figura \ref{code:sas-copiers-4}, a partil del cual se ha obtenido la salida de la figura \ref{img:copiers-regression-prediction2}.
 
         \begin{align}
-          \widehat{Y}_h &= \widehat{\beta}_0 +\widehat{\beta}_16+ \varepsilon_h = 89.6313\\
+          E[\widehat{Y}_h] &= E[\widehat{\beta}_0 +\widehat{\beta}_1 * 6 + \varepsilon_h] = 89.6313\\
           t_{n-2;1-\frac{\alpha}{2}} &= t_{43;0.95} = 1.681071\\
           Var\left[\widehat{Y}_h \right]  &= 1.9499
         \end{align}
 
+        \paragraph{}
+        El resultado del intervalo de confianza para la media se muestra en la ecuación \eqref{eq:copiers-pred-6-ic}.
+
         \begin{equation}
+        \label{eq:copiers-pred-6-ic}
           \text{I.Conf.}
-          = \left[\widehat{Y}_h \pm t_{n-2;1-\frac{\alpha}{2}}\sqrt{Var\left[\widehat{Y}_h \right]}\right]
+          = \left[E[\widehat{Y}_h] \pm t_{n-2;1-\frac{\alpha}{2}}\sqrt{Var\left[\widehat{Y}_h \right]}\right]
           = \left[89.6313 \pm 2.3475\right]
           = \left[87.2839, 91.9788\right]
         \end{equation}
@@ -334,23 +337,29 @@ than $14$ minutes for each additional copier that is serviced on a service call.
       \subsubsection{Obtain a $90\%$ prediction interval for the service time on the next call in which six copiers are serviced. Is your prediction interval wider than the corresponding confidence interval in part (\ref{sec:copiers-2.14a})? Should it be?}
 
         \paragraph{}
-        [TODO ]
+        En este apartado, se pide obtener un intervalo de predicción del $90\%$ para la media de la variable dependiente $Y$ cuando la variable dependiente toma el valor $X=6$. Para ello, se ha utilizado el fragmento de código \emph{SAS} incluido en la figura \ref{code:sas-copiers-4}, a partil del cual se ha obtenido la salida de la figura \ref{img:copiers-regression-prediction2}.
 
         \begin{align}
-          \widehat{Y}_{pred} &= \widehat{\beta}_0 +\widehat{\beta}_16 + \varepsilon_i = 89.6313\\
+          E[\widehat{Y}_{pred}] &= E[\widehat{\beta}_0 +\widehat{\beta}_16 + \varepsilon_i] = 89.6313\\
           t_{n-2;1-\frac{\alpha}{2}} &= t_{43;0.95} = 1.681071\\
           Var\left[\widehat{Y}_{pred}\right] &= \widehat{\sigma}^2 + Var\left[\widehat{Y}_h \right]  =79.45063 + 1.9499 = 81.40053
         \end{align}
 
+        \paragraph{}
+        El resultado del intervalo de predicción se muestra en la ecuación \eqref{eq:copiers-pred-6-ipred}.
+
         \begin{equation}
+          \label{eq:copiers-pred-6-ipred}
           \begin{split}
             \text{I.Pred.}
-            = \left[\widehat{Y}_{pred} \pm z_{1-\frac{\alpha}{2}}\sqrt{Var\left[\widehat{Y}_{pred}\right]}\right]
+            = \left[E[\widehat{Y}_{pred}] \pm z_{1-\frac{\alpha}{2}}\sqrt{Var\left[\widehat{Y}_{pred}\right]}\right]
             = \left[89.6313 \pm 15.167\right]
             = \left[74.4643, 104.7983\right]
           \end{split}
         \end{equation}
 
+        \paragraph{}
+        Tal y como se puede apreciar, el intervalo de predicción es mucho más amplio que el intervalo de confianza para la media. Esto tiene sentido ya que el intervalo de predicción tiene en cuenta la dispersión generada en cada observación, es decir, su varianza tiene un $\widehat{\sigma}^2$ \say{mas} que el intervalo de confianza.
 
     \setcounter{subsection}{23}
     \subsection{Refer to \textbf{Copier maintenance} Problem \ref{sec:e1-20}.}
@@ -364,7 +373,7 @@ than $14$ minutes for each additional copier that is serviced on a service call.
         En este caso, se pide realizar un test de la $F$ para comprobar si existe relación de dependencia entre la variable dependiente $Y$ y la variable dependiente $X$. Por tanto, esto se puede modelar de la misma manera que se hizo en el apartado \ref{sec:copiers-2.5b} del ejercicio \ref{sec:copiers-2.5}.
 
         \paragraph{}
-        El test de hipótesis que se realizará se muestra en la ecuación \eqref{eq:copier-maintance-h-0-f-test}, el cual es equivalente al del apartado previamente citado. Sin embargo, la manera de proceder para la realización del test, en este caso será diferente. Tal y como se indicó anteriormente, mediante el \emph{test-t} se prueba que la variable de interés tome un determinado valor (lo cual lo hace más general que el que se ha realizado en esta sección).
+        El test de hipótesis que se realizará se muestra en la ecuación \eqref{eq:copiers-h-0-f-test}, el cual es equivalente al del apartado previamente citado. Sin embargo, la manera de proceder para la realización del test, en este caso será diferente. Tal y como se indicó anteriormente, mediante el \emph{test-t} se prueba que la variable de interés tome un determinado valor (lo cual lo hace más general que el que se ha realizado en esta sección).
 
         \paragraph{}
         En este caso, en lugar de realizar el test directamente sobre la estimación de $\beta_1$, se realiza sobre la variación recogida por el modelo. En concreto, se compara la relación entre la variación recogida por el modelo y la aleatoria con la distribución $F$ con $1$ y $n-2$ grados de libertad, para así obtener el \emph{p-valor} del test.
@@ -373,7 +382,7 @@ than $14$ minutes for each additional copier that is serviced on a service call.
         Se puede demostar que los resultados obtenidos sobre el test de existencia de correlación entre $X$ e $Y$ son equivalente entre el \emph{test t} y el \emph{test F}
 
         \begin{equation}
-          \label{eq:copier-maintance-h-0-f-test}
+          \label{eq:copiers-h-0-f-test}
           \begin{split}
             H_0&: \beta_1 = 0 \\
             H_1&: \beta_1 \neq 0
@@ -381,10 +390,10 @@ than $14$ minutes for each additional copier that is serviced on a service call.
         \end{equation}
 
         \paragraph{}
-        En este caso, se ha obtenido un \emph{p-valor} muy próximo a cero, tal y como se indica en la ecuación \eqref{eq:copier-maintance-f-test-p-value}. Dado que el valor $\alpha$ se ha fijado en $0.1$, nos vemos obligados a rechazar la hipótesis de que el valor de $\beta_1$ es igual a cero. Este resultado es equivalente a obtenido para el \emph{test t}
+        En este caso, se ha obtenido un \emph{p-valor} muy próximo a cero, tal y como se indica en la ecuación \eqref{eq:copiers-f-test-p-value}. Dado que el valor $\alpha$ se ha fijado en $0.1$, nos vemos obligados a rechazar la hipótesis de que el valor de $\beta_1$ es igual a cero. Este resultado es equivalente a obtenido para el \emph{test t}
 
         \begin{equation}
-        \label{eq:copier-maintance-f-test-p-value}
+        \label{eq:copiers-f-test-p-value}
           \text{p-value} = Pr\left[\frac{MSM}{MSE} > F_{1;n-2}\right] =
           Pr\left[\frac{76960}{79.45063} > F_{1;43}\right] =
           Pr\left[968.66 > F_{1;43}\right] <
@@ -397,10 +406,10 @@ than $14$ minutes for each additional copier that is serviced on a service call.
         En este apartado se pide estudiar el grado de variación recogida por el modelo. Dicho grado de variación se puede estudiar a partir del coeficiente de determinación $R^2$, que representa el ratio de variación en términos de suma de cuadrados entre el modelo y el total del conjunto de datos. Por tanto, este siempre toma valores en el intervalo $[0,1]$.
 
         \paragraph{}
-        En este caso, el modelo recoge el $95.74\%$ de la variación del conjunto de datos. Por tanto, se cree que dicho ajuste ha sido acertado. La expresión del coeficiente de determinación se muestra en la ecuación \eqref{eq:copier-maintance-r-2}. Esta ha sido extraida de la figura \ref{img:copiers-regression-summary}, generada a partir del fragmento de código de la figura \ref{code:sas-copiers-2} utilizado en otros apartados.
+        En este caso, el modelo recoge el $95.74\%$ de la variación del conjunto de datos. Por tanto, se cree que dicho ajuste ha sido acertado. La expresión del coeficiente de determinación se muestra en la ecuación \eqref{eq:copiers-r-2}. Esta ha sido extraida de la figura \ref{img:copiers-regression-summary}, generada a partir del fragmento de código de la figura \ref{code:sas-copiers-2} utilizado en otros apartados.
 
         \begin{equation}
-        \label{eq:copier-maintance-r-2}
+        \label{eq:copiers-r-2}
           R^2 = \frac{SSM}{SST} = \frac{76960}{76960 + 3416.37702} = 0.9574
         \end{equation}
 
@@ -452,7 +461,7 @@ run;
       \centering
       \begin{minted}[frame=single,framesep=5pt]{sas}
 proc reg data=copiers;
-  model y=x;
+  model y=x /clb alpha=0.1;
   id x;
 run;
       \end{minted}
