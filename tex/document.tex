@@ -17,7 +17,8 @@
 
   \part{Ejercicio Kutner:\\ Mantenimiento de Copiadoras}
 
-
+    \paragraph{}
+    Para la realización del ejercicio de \emph{Mantenimiento de Copiadoras} mediante SAS, lo primero que se ha llevado a cabo es la importación del conjunto de datos a partir del fichero. Para facilitar dicha tarea, se ha realizado una fase previa de preprocesado para convertir el fichero a formato \texttt{csv} denotando por $Y$ la primera columna y $X$ la segunda (tal y como indica el enunciado). Una vez hecho esto, se ha utilizado el fragmento de la figura \ref{code:sas-copiers-1} para importar el conjunto de datos en \emph{SAS}. Por tanto, ya se puede comenzar a realizar el ejercicio.
 
     \setcounter{section}{1}
     \setcounter{subsection}{19}
@@ -29,10 +30,25 @@
         Y_i = \beta_0 + \beta_1X_i + \epsilon_i
       \end{equation}
 
+      \begin{itemize}
+        \item $Y_i$:
+        \item $\beta_0$:
+        \item $\beta_1$:
+        \item $X_i$:
+        \item $\epsilon_i$:
+      \end{itemize}
+
+
       \subsubsection{Obtain the estimated regression function.}
 
         \paragraph{}
-        [TODO ]
+        Para obtener la generación del modelo de regresión a mediante \emph{SAS} se ha utilizado el fragmento de códido \emph{SAS} de la figura \ref{code:sas-copiers-2}, que calcula los estimadores del modelo de regresión lineal simple que se ilustra en la ecuación \eqref{eq:simple-linear-regression-model}. A partir de dicha sentencia se han obtenido distintas salidas que después han sido utilizadas en otros apartados pedidos por el enunciado del problema.
+
+        \paragraph{}
+        Para la resolución de este apartado, ha sido suficiente con consultar el \say{resumen}, que se muestra en la figura \ref{img:copiers-regression-summary}, a partir de la cual se han obtenido los valores de $\beta_0$ y $\beta_1$, que se muestran en las ecuaciones \eqref{eq:beta_0} y \eqref{eq:beta_1} respectivamente.
+
+        \paragraph{}
+        Por tanto, la estimación de la función de regresión simple obtenida se muestra en la ecuación \eqref{eq:model_estimation}.
 
         \begin{figure}[!h]
           \centering
@@ -42,15 +58,24 @@
         \end{figure}
 
         \begin{align}
+        \label{eq:beta_0}
           \widehat{\beta}_0 &= -0.58016\\
+        \label{eq:beta_1}
           \widehat{\beta}_1 &= 15.03525\\
+        \label{eq:model_estimation}
           \widehat{Y_i} &= \widehat{\beta}_0 +\widehat{\beta}_1X_i + \epsilon_i = -0.58016 + 15.03525 X_i + \epsilon_i
         \end{align}
 
       \subsubsection{Plot the estimated regression function and the data. How well does the estimated regression function fit the data?}
 
         \paragraph{}
-        [TODO ]
+        En este apartado se pide representar la recta de regresión obtenida en el apartado anterior. Afortunadamente, en este caso no ha sido necesaria la utilización de otro fragmento de código, sino que con el utilizado en el apartado anterior (figura \ref{code:sas-copiers-1}) ya se generaba dicho gráfico.
+
+        \paragraph{}
+        El gráfico en cuestión se muestra en la figura \ref{img:copiers-regression-plot}, a partir del cual se puede observar la relación lineal existente entre la variable independiente $X$ y la variable dependiente $Y$. Además, se puede apreciar como el modelo de regresió lineal simple se ajusta de manera apropiada a los datos.
+
+        \paragraph{}
+        En los siguientes apartados se analizará la dispersión de los datos así como los intervalos de confianza para la media y de predicción. Sim embargo, a simple vista y debido al contexto y unidades de medida de los datos, parece coherente el nivel de dispersión de los datos (variaciones entorno a $10$ minutos entre instalaciones).
 
         \begin{figure}[!h]
           \centering
@@ -62,7 +87,13 @@
       \subsubsection{Interpret $\widehat{\beta}_0$ in your estimated regression function. Does $\widehat{\beta}_0$ provide any relevant information here? Explain.}
 
         \paragraph{}
-        [TODO ]
+        El valor estimado de la ordenada en el origen (o \say{intercept}) se muestra en la ecuación \eqref{eq:beta_0}, el cual está muy próximo al valor $0$. La interpretación del término independiente en este caso podría ser \emph{el número de minutos que se emplean en realizar $0$ mantenimientos}, el cual tiene sentido que esté próximo a $0$ minutos.
+
+        \paragraph{}
+        Esto podría deberse a que no se contabiliza el tiempo cuando no hay mantenimiento por hacer, lo cual tiene sentido ya que el estudio trata de analizar la duración del proceso de \emph{mantenimiento de copiadoras}. Algo a destacar es que, posiblemente debido a la muestra patrón utilizada para la generación del modelo, el término independiente ha sido ajustado con valor negativo. Esto no puede tener ninguna interpretación, ya que su valor se ha ajustado de manera que el ajuste global (en términos de mínimos cuadrados) sea mínimo.
+
+        \paragraph{}
+        Tal y como se verá en el apartado \ref{sec:copiers-2.5e} del ejercicio \ref{sec:copiers-2.5}, no existen evidencias significativas para asumir que sea distinto de cero. Pero tal y como se discute en dicho apartado, no es apropiado eliminarlo ya que este haría que parte del error explicado por el modelo se convirtiese en error aleatorio, lo cual es algo negativo para el ajuste.
 
 
       \subsubsection{Obtain a point estimate of the mean service time when $X = 5$ copiers are serviced.}
@@ -129,6 +160,7 @@
     \setcounter{section}{2}
     \setcounter{subsection}{4}
     \subsection{Refer to \textbf{Copier maintenance} Problem \ref{sec:e1-20}.}
+    \label{sec:copiers-2.5}
 
       \subsubsection{Estimate the change in the mean service time when the number of copiers serviced increases by one. Use a $90\%$ confidence interval. Interpret your confidence interval.}
       \label{sec:copiers-2.5a}
@@ -203,7 +235,7 @@ than $14$ minutes for each additional copier that is serviced on a service call.
 
 
       \subsubsection{Does $\widehat{\beta}_0$ give any relevant information here about the start-up time on calls-i.e., about the time required before service work is begun on the copiers at a customer location?}
-
+      \label{sec:copiers-2.5e}
         \paragraph{}
         [TODO ]
 
