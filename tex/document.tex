@@ -191,17 +191,15 @@
         [TODO]
 
         \begin{align}
-          \widehat{\beta}_1 &= 15.03525 \\
           t_{n-2;1-\frac{\alpha}{2}} &= t_{43;0.95} = 1.681071\\
           Var\left[\widehat{\beta}_1\right] &= 0.23337
         \end{align}
 
         \begin{equation}
-          \begin{split}
-            \text{I.Conf.} &= \left[\widehat{\beta}_1 \pm t_{n-2;1-\frac{\alpha}{2}}\sqrt{Var\left[\widehat{\beta}_1\right]}\right]\\
-            &= \left[15.03525 \pm 0.8121\right] \\
-            &= \left[14.2232, 15.8474\right]
-          \end{split}
+          \text{I.Conf.}
+          = \left[\widehat{\beta}_1 \pm t_{n-2;1-\frac{\alpha}{2}}\sqrt{Var\left[\widehat{\beta}_1\right]}\right]
+          = \left[15.03525 \pm 0.8121\right]
+          = \left[14.2232, 15.8474\right]
         \end{equation}
 
       \subsubsection{Conduct a \emph{t-test} to determine whether or not there is a linear association between $X$ and $Y$ here; control the $\alpha$ risk at $0.10$. State the alternatives, decision rule, and conclusion. What is the \emph{P-value} of your test?}
@@ -218,12 +216,11 @@
         \end{equation}
 
         \begin{equation}
-          \begin{split}
-            \text{P-value} &= 2Pr\left[\abs{\frac{\widehat{\beta}_1 - 0}{\sqrt{Var\left[\widehat{\beta}_1\right]}}} > t_{n-2}\right] \\
-            &= 2Pr\left[\frac{15.03525}{0.48309} > t_{43}\right] \\
-            &= 2Pr\left[31.12 > t_{43}\right] \\
-            &< 0.0001
-          \end{split}
+            \text{p-value}
+            = 2Pr\left[\abs{\frac{\widehat{\beta}_1 - 0}{\sqrt{Var\left[\widehat{\beta}_1\right]}}} > t_{n-2}\right]
+            = 2Pr\left[\frac{15.03525}{0.48309} > t_{43}\right]
+            = 2Pr\left[31.12 > t_{43}\right]
+            < 0.0001
         \end{equation}
 
 
@@ -247,12 +244,11 @@ than $14$ minutes for each additional copier that is serviced on a service call.
 
 
         \begin{equation}
-          \begin{split}
-            \text{P-value} &= Pr\left[\frac{\widehat{\beta}_1 - 14}{\sqrt{Var\left[\widehat{\beta}_1\right]}} > t_{n-2}\right] \\
-            &= Pr\left[\frac{1.03525}{0.48309} > t_{43}\right] \\
-            &= Pr\left[2.14297 > t_{43}\right] \\
-            &= 0.01890824
-          \end{split}
+            \text{p-value}
+            = Pr\left[\frac{\widehat{\beta}_1 - 14}{\sqrt{Var\left[\widehat{\beta}_1\right]}} > t_{n-2}\right]
+            = Pr\left[\frac{1.03525}{0.48309} > t_{43}\right]
+            = Pr\left[2.14297 > t_{43}\right]
+            = 0.01890824
         \end{equation}
 
 
@@ -269,13 +265,11 @@ than $14$ minutes for each additional copier that is serviced on a service call.
         \end{equation}
 
         \begin{equation}
-          \begin{split}
-            \text{P-value} &= 2Pr\left[\abs{\frac{\widehat{\beta}_0 - 0}{\sqrt{Var\left[\widehat{\beta}_0\right]}}} > t_{n-2}\right] \\
-            &= 2Pr\left[\abs{\frac{-0.58016}{2.80394}} > t_{43}\right] \\
-            &= 2Pr\left[\abs{-0.21} > t_{43} \right] \\
-            &= 2Pr\left[0.21 > t_{43} \right] \\
-            &= 0.8371
-          \end{split}
+            \text{p-value}
+            = 2Pr\left[\abs{\frac{\widehat{\beta}_0 - 0}{\sqrt{Var\left[\widehat{\beta}_0\right]}}} > t_{n-2}\right]
+            = 2Pr\left[\abs{\frac{-0.58016}{2.80394}} > t_{43}\right]
+            = 2Pr\left[\abs{-0.21} > t_{43} \right]
+            = 0.8371
         \end{equation}
 
     \setcounter{subsection}{13}
@@ -302,12 +296,10 @@ than $14$ minutes for each additional copier that is serviced on a service call.
         \end{align}
 
         \begin{equation}
-          \begin{split}
-            \text{I.Conf.} &= \left[\widehat{Y}_h \pm t_{n-2;1-\frac{\alpha}{2}}\sqrt{Var\left[\widehat{Y}_h \right]}\right] \\
-            &= \left[89.6313 \pm 1.681071 * \sqrt{1.9499}\right] \\
-            &= \left[89.6313 \pm 2.3475\right] \\
-            &= \left[87.2839, 91.9788\right]
-          \end{split}
+          \text{I.Conf.}
+          = \left[\widehat{Y}_h \pm t_{n-2;1-\frac{\alpha}{2}}\sqrt{Var\left[\widehat{Y}_h \right]}\right]
+          = \left[89.6313 \pm 2.3475\right]
+          = \left[87.2839, 91.9788\right]
         \end{equation}
 
       \subsubsection{Obtain a $90\%$ prediction interval for the service time on the next call in which six copiers are serviced. Is your prediction interval wider than the corresponding confidence interval in part (\ref{sec:copiers-2.14a})? Should it be?}
@@ -323,10 +315,10 @@ than $14$ minutes for each additional copier that is serviced on a service call.
 
         \begin{equation}
           \begin{split}
-            \text{I.Pred.} &= \left[\widehat{Y}_{pred} \pm z_{1-\frac{\alpha}{2}}\sqrt{Var\left[\widehat{Y}_{pred}\right]}\right] \\
-            &= \left[89.6313 \pm 1.681071 * \sqrt{81.40053}\right] \\
-            &= \left[89.6313 \pm 15.167\right] \\
-            &= \left[74.4643, 104.7983\right]
+            \text{I.Pred.}
+            = \left[\widehat{Y}_{pred} \pm z_{1-\frac{\alpha}{2}}\sqrt{Var\left[\widehat{Y}_{pred}\right]}\right]
+            = \left[89.6313 \pm 15.167\right]
+            = \left[74.4643, 104.7983\right]
           \end{split}
         \end{equation}
 
@@ -348,7 +340,7 @@ than $14$ minutes for each additional copier that is serviced on a service call.
         \end{equation}
 
         \begin{equation}
-          \text{P-value} = Pr\left[\frac{MSM}{MSE} > F_{1;n-2}\right] =
+          \text{p-value} = Pr\left[\frac{MSM}{MSE} > F_{1;n-2}\right] =
           Pr\left[\frac{76960}{79.45063} > F_{1;43}\right] =
           Pr\left[968.66 > F_{1;43}\right] <
           0.0001
