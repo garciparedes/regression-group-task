@@ -69,7 +69,7 @@
       \subsubsection{Plot the estimated regression function and the data. How well does the estimated regression function fit the data?}
 
         \paragraph{}
-        En este apartado se pide representar la recta de regresión obtenida en el apartado anterior. Afortunadamente, en este caso no ha sido necesaria la utilización de otro fragmento de código, sino que con el utilizado en el apartado anterior (figura \ref{code:sas-copiers-1}) ya se generaba dicho gráfico.
+        En este apartado se pide representar la recta de regresión obtenida en el apartado anterior. Afortunadamente, en este caso no ha sido necesaria la utilización de otro fragmento de código, sino que con el utilizado en el apartado anterior (figura \ref{code:sas-copiers-2}) ya se generaba dicho gráfico.
 
         \paragraph{}
         El gráfico en cuestión se muestra en la figura \ref{img:copiers-regression-plot}, a partir del cual se puede observar la relación lineal existente entre la variable independiente $X$ y la variable dependiente $Y$. Además, se puede apreciar como el modelo de regresió lineal simple se ajusta de manera apropiada a los datos.
@@ -137,7 +137,7 @@
 
 
         \paragraph{}
-        En este apartado se pide obtener los residuos $e_i$. Para ello, se ha creido conveniente la representación de un gráfico de resiudos, el cual ha sido obtenido mediante el fragmento de código de la figura \ref{code:sas-copiers-1} utilizado en apartados anteriores.
+        En este apartado se pide obtener los residuos $e_i$. Para ello, se ha creido conveniente la representación de un gráfico de resiudos, el cual ha sido obtenido mediante el fragmento de código de la figura \ref{code:sas-copiers-2} utilizado en apartados anteriores.
 
         \paragraph{}
         Este gráfico de residuos se muestra en la figura \ref{img:copiers-regression-residuals} y a partir de él se puede apreciar una distribución más o menos uniforme de los errores (tiene cierta forma de parábola, pero esta característica es sutil). También se puede apreciar la dispersión de los datos en torno al valor $10$, tal y como se indicó en partaados anteriores.
@@ -163,7 +163,7 @@
       \subsubsection{Obtain point estimates of $\sigma^2$ and $\sigma$. In what units is $\sigma$ expressed?}
 
         \paragraph{}
-        En este apartado se han pedido obtener estimaciones acerca de la dispersión de los errores, es decir, del valor $\sigma$. Al igual que en anteriores apartados, este valor se ha obtenido a partir del código \emph{SAS} de la figura \ref{code:sas-copiers-1}, que ha generado los resultados obtenidos en la figura \ref{img:copiers-regression-summary}.
+        En este apartado se han pedido obtener estimaciones acerca de la dispersión de los errores, es decir, del valor $\sigma$. Al igual que en anteriores apartados, este valor se ha obtenido a partir del código \emph{SAS} de la figura \ref{code:sas-copiers-2}, que ha generado los resultados obtenidos en la figura \ref{img:copiers-regression-summary}.
 
         \paragraph{}
         La varianza y la desviación típica de los errores se muestran en las ecuaciones \eqref{eq:sigma-2} y \eqref{eq:sigma} respectivamente. En el título del apartado se indica además que se explique cuáles son las unidades de medida de la desviación típica de los errores $\sigma$. Es sencillo entender que las unidades de esta medida serán en \emph{minutos}, ya que esta mide la dispersión de los datos en torno a la predicción obtenida por la recta de regresión, la cual se refiere a la variable dependiente $Y$, que representa el número de minutos en realizar el mantenimiento.
@@ -330,16 +330,30 @@ than $14$ minutes for each additional copier that is serviced on a service call.
       \subsubsection{Conduct an \emph{F-test} to determine whether or not there is a linear association between time spent and number of copiers serviced; use $\alpha = 0.1$. State the alternatives, decision rule, and conclusion.}
 
         \paragraph{}
-        [TODO ]
+        En este caso, se pide realizar un test de la $F$ para comprobar si existe relación de dependencia entre la variable dependiente $Y$ y la variable dependiente $X$. Por tanto, esto se puede modelar de la misma manera que se hizo en el apartado \ref{sec:copiers-2.5b} del ejercicio \ref{sec:copiers-2.5}.
+
+        \paragraph{}
+        El test de hipótesis que se realizará se muestra en la ecuación \eqref{eq:copier-maintance-h-0-f-test}, el cual es equivalente al del apartado previamente citado. Sin embargo, la manera de proceder para la realización del test, en este caso será diferente. Tal y como se indicó anteriormente, mediante el \emph{test-t} se prueba que la variable de interés tome un determinado valor (lo cual lo hace más general que el que se ha realizado en esta sección).
+
+        \paragraph{}
+        En este caso, en lugar de realizar el test directamente sobre la estimación de $\beta_1$, se realiza sobre la variación recogida por el modelo. En concreto, se compara la relación entre la variación recogida por el modelo y la aleatoria con la distribución $F$ con $1$ y $n-2$ grados de libertad, para así obtener el \emph{p-valor} del test.
+
+        \paragraph{}
+        Se puede demostar que los resultados obtenidos sobre el test de existencia de correlación entre $X$ e $Y$ son equivalente entre el \emph{test t} y el \emph{test F}
 
         \begin{equation}
+          \label{eq:copier-maintance-h-0-f-test}
           \begin{split}
             H_0&: \beta_1 = 0 \\
             H_1&: \beta_1 \neq 0
           \end{split}
         \end{equation}
 
+        \paragraph{}
+        En este caso, se ha obtenido un \emph{p-valor} muy próximo a cero, tal y como se indica en la ecuación \eqref{eq:copier-maintance-f-test-p-value}. Dado que el valor $\alpha$ se ha fijado en $0.1$, nos vemos obligados a rechazar la hipótesis de que el valor de $\beta_1$ es igual a cero. Este resultado es equivalente a obtenido para el \emph{test t}
+
         \begin{equation}
+        \label{eq:copier-maintance-f-test-p-value}
           \text{p-value} = Pr\left[\frac{MSM}{MSE} > F_{1;n-2}\right] =
           Pr\left[\frac{76960}{79.45063} > F_{1;43}\right] =
           Pr\left[968.66 > F_{1;43}\right] <
@@ -349,9 +363,13 @@ than $14$ minutes for each additional copier that is serviced on a service call.
       \subsubsection{By how much, relatively, is the total variation in number of minutes spent on a call-reduced when the number of copiers serviced is introduced into the analysis? Is this a relatively small or large reduction? What is the name of this measure?}
 
         \paragraph{}
-        [TODO coeficiente de determinación]
+        En este apartado se pide estudiar el grado de variación recogida por el modelo. Dicho grado de variación se puede estudiar a partir del coeficiente de determinación $R^2$, que representa el ratio de variación en términos de suma de cuadrados entre el modelo y el total del conjunto de datos. Por tanto, este siempre toma valores en el intervalo $[0,1]$.
+
+        \paragraph{}
+        En este caso, el modelo recoge el $95.74\%$ de la variación del conjunto de datos. Por tanto, se cree que dicho ajuste ha sido acertado. La expresión del coeficiente de determinación se muestra en la ecuación \eqref{eq:copier-maintance-r-2}. Esta ha sido extraida de la figura \ref{img:copiers-regression-summary}, generada a partir del fragmento de código de la figura \ref{code:sas-copiers-2} utilizado en otros apartados.
 
         \begin{equation}
+        \label{eq:copier-maintance-r-2}
           R^2 = \frac{SSM}{SST} = \frac{76960}{76960 + 3416.37702} = 0.9574
         \end{equation}
 
