@@ -99,7 +99,13 @@
       \subsubsection{Obtain a point estimate of the mean service time when $X = 5$ copiers are serviced.}
 
         \paragraph{}
-        [TODO ]
+        Para la obtención de una estimación puntual para $X=5$, se ha decidido realizar el proceso de añadir una nueva observación al conjunto de datos (de manera que tan solo contenga el valor de la variable independiente $X$). Para ello, se ha utilizado el fragmento de código \emph{SAS} de la figura \ref{code:sas-copiers-3}. Nótese que esto podría haberse llevado a cabo mediante la simple sustitución del valor $X$ en la función de regresión de la ecuación \eqref{eq:model_estimation}, pero esto no nos habría ofrecido una estimación del la varianza.
+
+        \paragraph{}
+        Por tanto, la salida obtenida a través de \emph{SAS} se muestra en la figura \ref{img:copiers-regression-prediction}, la cual indica el valor predicho, así como una estimador de la desviación típica respecto de la media en ese punto. Estos valore se muestran en las ecuaciones \eqref{eq:x_5_e} y \eqref{eq:x_5_var}.
+
+        \paragraph{}
+        La interpretación que se le puede dar a dichos resultados es que para el mantenimiento de $5$ copiadoras se dedica en torno a $74.6$ minutos con una variación media de $1.15$ minutos.
 
         \begin{figure}[!h]
           \centering
@@ -109,11 +115,13 @@
         \end{figure}
 
         \begin{align}
+        \label{eq:x_5_e}
           \begin{split}
             E\left[\widehat{Y} \mid X = 5\right] &=
             E\left[\widehat{\beta}_0 +\widehat{\beta}_1X + \epsilon \mid X = 5\right]
             = -0.58016 + 15.03525 * 5 + 0 = 74.5961
           \end{split}\\
+        \label{eq:x_5_var}
           \begin{split}
             Var\left[\widehat{Y} \mid X = 5\right] &=
             \sigma^2\left(1 + \frac{1}{n} + \frac{(x^* - \bar{x})^2}{S_{xx}}\right) =
@@ -127,6 +135,13 @@
 
       \subsubsection{Obtain the residuals $e_i$ and the sum of the squared residuals $\sum_i e_i^2$. What is the relation between the sum of the squared residuals here and the quantity $Q$ in \eqref{eq:least-squares-criterion}?}
 
+
+        \paragraph{}
+        En este apartado se pide obtener los residuos $e_i$. Para ello, se ha creido conveniente la representación de un gráfico de resiudos, el cual ha sido obtenido mediante el fragmento de código de la figura \ref{code:sas-copiers-1} utilizado en apartados anteriores.
+
+        \paragraph{}
+        Este gráfico de residuos se muestra en la figura \ref{img:copiers-regression-residuals} y a partir de él se puede apreciar una distribución más o menos uniforme de los errores (tiene cierta forma de parábola, pero esta característica es sutil). También se puede apreciar la dispersión de los datos en torno al valor $10$, tal y como se indicó en partaados anteriores.
+
         \begin{figure}[!h]
           \centering
           \includegraphics[width=.8\textwidth]{copiers/regression-residuals}
@@ -134,24 +149,31 @@
           \label{img:copiers-regression-residuals}
         \end{figure}
 
-        \begin{align}
+        \begin{equation}
         \label{eq:least-squares-criterion}
-          Q &= \sum\limits_{i=1}^n(Y_i - \beta_0 - \beta_1X_i)^2 = 3416.37702
-        \end{align}
-
+          Q = \sum\limits_{i=1}^n(Y_i - \beta_0 - \beta_1X_i)^2 = 3416.37702
+        \end{equation}
 
         \paragraph{}
-        [TODO ]
+        En el título del apartado, también se pide el valor de la suma de errores al cuadrado $\sum_i e_i^2$, así como su relación con el valor $Q$, que se muestra en la ecuación \eqref{eq:least-squares-criterion}. El valor $Q$ es aquel que se trata de minimizar bajo el criterio de mínimos cuadrados en el modelo de regresión simple. Este ha sido extraido del resumen generado por \emph{SAS}, que se muestra en la figura \ref{img:copiers-regression-summary} utilizada en otros apartados.
+
+        \paragraph{}
+        Por tanto, es la medida del error en términos de mínimos cuadrados de la recta de regresión obtenida con respecto del conjunto de datos. sto puede escribirse como $Q = \sum_{i=1}^n(Y_i - \widehat{Y}_i)^2$, y dado que los errores $e_i$ se definen como $Y_i - \widehat{Y}_i$ la equivalencia es directa, es decir, $Q = \sum_i e_i^2$.
 
       \subsubsection{Obtain point estimates of $\sigma^2$ and $\sigma$. In what units is $\sigma$ expressed?}
 
         \paragraph{}
-        [TODO $\sigma$ en las unidades de $Y$]
+        En este apartado se han pedido obtener estimaciones acerca de la dispersión de los errores, es decir, del valor $\sigma$. Al igual que en anteriores apartados, este valor se ha obtenido a partir del código \emph{SAS} de la figura \ref{code:sas-copiers-1}, que ha generado los resultados obtenidos en la figura \ref{img:copiers-regression-summary}.
+
+        \paragraph{}
+        La varianza y la desviación típica de los errores se muestran en las ecuaciones \eqref{eq:sigma-2} y \eqref{eq:sigma} respectivamente. En el título del apartado se indica además que se explique cuáles son las unidades de medida de la desviación típica de los errores $\sigma$. Es sencillo entender que las unidades de esta medida serán en \emph{minutos}, ya que esta mide la dispersión de los datos en torno a la predicción obtenida por la recta de regresión, la cual se refiere a la variable dependiente $Y$, que representa el número de minutos en realizar el mantenimiento.
 
         \begin{align}
+        \label{eq:sigma-2}
           \begin{split}
             \widehat{\sigma}^2 &= MSE = \frac{SSE}{n-2} = \frac{\sum_{i=1}^n(Y_i - \widehat{Y}_i)^2}{n-2} = \frac{3416.37702}{45-2} = 79.45063
           \end{split} \\
+        \label{eq:sigma}
           \begin{split}
             \widehat{\sigma} &= \sqrt{\widehat{\sigma}^2} = \sqrt{79.45063} = 8.91351
           \end{split}
