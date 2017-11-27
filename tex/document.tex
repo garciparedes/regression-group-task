@@ -27,16 +27,10 @@
 
       \begin{equation}
       \label{eq:simple-linear-regression-model}
-        Y_i = \beta_0 + \beta_1X_i + \epsilon_i
+        Y_i = \beta_0 + \beta_1X_i + \varepsilon_i
       \end{equation}
 
-      \begin{itemize}
-        \item $Y_i$:
-        \item $\beta_0$:
-        \item $\beta_1$:
-        \item $X_i$:
-        \item $\epsilon_i$:
-      \end{itemize}
+      Analizaremos el modelo de la ecuación \ref{eq:simple-linear-regression-model} mediante un estudio de regresión lineal simple, con $Y_i$ como variable dependiente, $X_i$ como variable independiente, $\beta_0$ como término independiente, y $\beta_1$ como término dependiente o pendiente de la recta de regresión. $\varepsilon_i$ es el error aleatorio que supondremos normal con media $0$ y varianza $\sigma^2$, es decir $\varepsilon_i \sim N(0, \sigma^2)$.
 
 
       \subsubsection{Obtain the estimated regression function.}
@@ -63,7 +57,7 @@
         \label{eq:beta_1}
           \widehat{\beta}_1 &= 15.03525\\
         \label{eq:model_estimation}
-          \widehat{Y_i} &= \widehat{\beta}_0 +\widehat{\beta}_1X_i + \epsilon_i = -0.58016 + 15.03525 X_i + \epsilon_i
+          \widehat{Y_i} &= \widehat{\beta}_0 +\widehat{\beta}_1X_i + \varepsilon_i = -0.58016 + 15.03525 X_i + \varepsilon_i
         \end{align}
 
       \subsubsection{Plot the estimated regression function and the data. How well does the estimated regression function fit the data?}
@@ -118,7 +112,7 @@
         \label{eq:x_5_e}
           \begin{split}
             E\left[\widehat{Y} \mid X = 5\right] &=
-            E\left[\widehat{\beta}_0 +\widehat{\beta}_1X + \epsilon \mid X = 5\right]
+            E\left[\widehat{\beta}_0 +\widehat{\beta}_1X + \varepsilon \mid X = 5\right]
             = -0.58016 + 15.03525 * 5 + 0 = 74.5961
           \end{split}\\
         \label{eq:x_5_var}
@@ -188,62 +182,83 @@
       \label{sec:copiers-2.5a}
 
         \paragraph{}
-        [TODO]
+        El enunciado de este apartado pide que se obtenga un intervalo de confianza del $90\%$ para la estimación de la pendiente de la regresión $\beta_1$. Para ello se ha utilizado la salida obtenida por el fragmento de código de la figura \ref{code:sas-copiers-2}, que se muestra en la figura \ref{img:copiers-regression-summary}.
 
         \begin{align}
           t_{n-2;1-\frac{\alpha}{2}} &= t_{43;0.95} = 1.681071\\
           Var\left[\widehat{\beta}_1\right] &= 0.23337
         \end{align}
 
+        \paragraph{}
+        En esta se aparece el intervalo de confianza al $90\%$ para el valor $\beta_1$, el cual se muestra en la ecuación \eqref{eq:copiers-beta-1-ic}. Este se construye a partir de la estimación $\widehat{\beta}_1=15.03525$, cuyo valor se relaja a partir de un determinado error de estimación $t_{n-2; 1-\frac{\alpha}{2}} \sqrt{Var\left[ \widehat{\beta}_1 \right]} = 1.681071*\sqrt{0.23337} = 0.8121$.
+
         \begin{equation}
+        \label{eq:copiers-beta-1-ic}
           \text{I.Conf.}
           = \left[\widehat{\beta}_1 \pm t_{n-2;1-\frac{\alpha}{2}}\sqrt{Var\left[\widehat{\beta}_1\right]}\right]
           = \left[15.03525 \pm 0.8121\right]
           = \left[14.2232, 15.8474\right]
         \end{equation}
 
-      \subsubsection{Conduct a \emph{t-test} to determine whether or not there is a linear association between $X$ and $Y$ here; control the $\alpha$ risk at $0.10$. State the alternatives, decision rule, and conclusion. What is the \emph{P-value} of your test?}
+        \paragraph{}
+        La interpretación de dicho intervalo es la siguiente: Con una seguridad del $90\%$ el tiempo medio de mantenimiento de cada copiadora se encuentra entre $14.2232$ y $15.8474$ minutos.
+
+      \subsubsection{Conduct a \emph{t-test} to determine whether or not there is a linear association between $X$ and $Y$ here; control the $\alpha$ risk at $0.1$. State the alternatives, decision rule, and conclusion. What is the \emph{P-value} of your test?}
       \label{sec:copiers-2.5b}
 
         \paragraph{}
-        [TODO ]
+        En este apartado se pide realizar un test de hipótesis acerca de la existencia de asociación entre $X$ e $Y$. Es decir, si la pendiente de nuestra recta de regresión puede ser considerada nula. Para ello, se puede modelar el test de hipótesis tal y como se indica en la ecuación \eqref{eq:copiers-beta1-t-test}.
 
         \begin{equation}
+        \label{eq:copiers-beta1-t-test}
           \begin{split}
             H_0&: \beta_1 = 0 \\
             H_1&: \beta_1 \neq 0
           \end{split}
         \end{equation}
 
+        \paragraph{}
+        En este caso se pide realizar el test de hipótesis mediante el procedimiento de \emph{test t} (ya que en la sección \ref{sec:copiers-2.24b} del ejercicio \ref{sec:copiers-2.24} se pide realizar el mismo test, pero esta vez a partir de la distribución $F$, para comprobar su equivalencia). El \emph{p-valor} de este test se obtiene tal y como se indica en la ecuación \eqref{eq:copiers-beta1-p-value}. Por ser un test de \emph{2 vías} se toma el valor absoluto y se multiplica por 2 el valor de probabilidad ($\alpha/2$ a cada lado). Para ello se ha utilizado la salida obtenida por el fragmento de código de la figura \ref{code:sas-copiers-2}, que se muestra en la figura \ref{img:copiers-regression-summary}.
+
         \begin{equation}
-            \text{p-value}
-            = 2Pr\left[\abs{\frac{\widehat{\beta}_1 - 0}{\sqrt{Var\left[\widehat{\beta}_1\right]}}} > t_{n-2}\right]
-            = 2Pr\left[\frac{15.03525}{0.48309} > t_{43}\right]
-            = 2Pr\left[31.12 > t_{43}\right]
-            < 0.0001
+        \label{eq:copiers-beta1-p-value}
+          \text{p-value}
+          = 2Pr\left[\abs{\frac{\widehat{\beta}_1 - 0}{\sqrt{Var\left[\widehat{\beta}_1\right]}}} > t_{n-2}\right]
+          = 2Pr\left[\frac{15.03525}{0.48309} > t_{43}\right]
+          = 2Pr\left[31.12 > t_{43}\right]
+          < 0.0001
         \end{equation}
 
+        \paragraph{}
+        El \emph{p-valor} obtenido es muy próximo a $0$, por lo que a nivel $\alpha = 0.1$ nos vemos obligados a rechazar la hipótesis de que $\beta_1$ es nulo. Esto quiere decir por tanto que asumiremos que existe relación lineal entre el $X$ e $Y$.
 
       \subsubsection{Are your results in parts (\ref{sec:copiers-2.5a}) and (\ref{sec:copiers-2.5b}) consistent? Explain.}
 
         \paragraph{}
-        [TODO ]
+        En este caso se nos pide analizar los resultados obtenidos en los dos últimos apartados para comprobar si son coherentes entre sí, ya que ambos se refieren a procesos de inferencia sobre la estimación de $\widehat{\beta}_1$.
+
+        \paragraph{}
+        Los resultados si que son coherentes entre sí, ya que en el primero de ellos se ha calculado un intervalo de confianza (o aceptación) para el valor de la pendiente $\beta_1$ de la regresión, mientras que en el siguiente caso se ha realizado un test sobre el valor de dicha pendiente (si se puede tomar como nula). Puesto que en el primer caso el límite izquierdo del intervalo se encuentra en torno al valor $14$ con un nivel de confianza del $90\%$, es razonable que sobre el mismo nivel de confianza se tenga que rechazar la hipótesis de que el valor $0$ está incluido en dicho intervalo de aceptación.
 
       \subsubsection{The manufacturer has suggested that the mean required time should not increase by more
 than $14$ minutes for each additional copier that is serviced on a service call. Conduct a test to decide whether this standard is being satisfied by Tri-City. Control the risk of a Type I error at $0.05$. State the alternatives, decision rule, and conclusion. What is the \emph{P-value} of the test?}
 
         \paragraph{}
-        [TODO ]
+        En este caso se pide realizar un test de hipótesis acerca de un intervalo, referido una vez más al valor de la pendiente de la relación $\beta_1$. Un fabricante quiere comprobar si es razonable asumir que el tiempo de mantenimiento de una copiadora es menor que $14$ minutos con un nivel de confianza del $95\%$. Por tanto. el test de hipótesis se define tal y como se indica en la ecuación \eqref{eq:copiers-beta1-t-test-interval}.
 
         \begin{equation}
+        \label{eq:copiers-beta1-t-test-interval}
           \begin{split}
             H_0&: \beta_1 \leq 14 \\
             H_1&: \beta_1 > 14
           \end{split}
         \end{equation}
 
+        \paragraph{}
+        En este caso para la realización del \emph{test t}, ya no hay que selecciona $\alpha/2$ a cada lado, ya que que el test es de \emph{1 vía}. El \emph{p-valor} del test se ha obtenido tal y como se indica en la ecuación \eqref{eq:copiers-beta1-p-value-interval}.
 
         \begin{equation}
+          \label{eq:copiers-beta1-p-value-interval}
             \text{p-value}
             = Pr\left[\frac{\widehat{\beta}_1 - 14}{\sqrt{Var\left[\widehat{\beta}_1\right]}} > t_{n-2}\right]
             = Pr\left[\frac{1.03525}{0.48309} > t_{43}\right]
@@ -251,26 +266,40 @@ than $14$ minutes for each additional copier that is serviced on a service call.
             = 0.01890824
         \end{equation}
 
+        \paragraph{}
+        El \emph{p-valor} en este caso, no es tan próximo a $0$ como en anteriores tests. Sin embargo, con un nivel de confianza del $95\%$ nos vemos obligados a rechazar la hipótesis de que $\beta_1$ sea menor que $14$. Nótese que esto no se puede rechazar con un nivel de confianza del $99\%$.
 
       \subsubsection{Does $\widehat{\beta}_0$ give any relevant information here about the start-up time on calls-i.e., about the time required before service work is begun on the copiers at a customer location?}
       \label{sec:copiers-2.5e}
+
         \paragraph{}
-        [TODO ]
+        En este apartado se pide realizar un test de hipótesis que permita comprobar si el valor $\beta_0$ es nulo. Esto puede interpretarse como que el tiempo para realizar $0$ mantenimientos de copiadoras también es $0$. El test se plantea por tanto como se indica en la ecuación \eqref{eq:copiers-beta0-t-test}.
 
         \begin{equation}
+          \label{eq:copiers-beta0-t-test}
           \begin{split}
             H_0&: \beta_0 = 0 \\
             H_1&: \beta_0 \neq 0
           \end{split}
         \end{equation}
 
+        \paragraph{}
+        Para la realización de dicho test de hipótesis se ha calculado el \emph{p-valor} tal y como se indica en la ecuación \eqref{eq:copiers-beta0-p-value}, que tal y como ocurría en el análogo de $\beta_1$, se plantea como un test de \emph{2 vías} por lo que se toma el valor absoluto y se multiplica por $2$ (debido a la simetría de la distribución $t$). Para ello se ha utilizado la salida obtenida por el fragmento de código de la figura \ref{code:sas-copiers-2}, que se muestra en la figura \ref{img:copiers-regression-summary}.
+
         \begin{equation}
+          \label{eq:copiers-beta0-p-value}
             \text{p-value}
             = 2Pr\left[\abs{\frac{\widehat{\beta}_0 - 0}{\sqrt{Var\left[\widehat{\beta}_0\right]}}} > t_{n-2}\right]
             = 2Pr\left[\abs{\frac{-0.58016}{2.80394}} > t_{43}\right]
             = 2Pr\left[\abs{-0.21} > t_{43} \right]
             = 0.8371
         \end{equation}
+
+        \paragraph{}
+        Debido al elevado valor obtenido en el \emph{p-valor} estamos en condiciones suficientes como para aceptar la hipótesis nula de la ecuación \eqref{eq:copiers-beta0-t-test}, que nos indica que el valor de la ordenada en el origen es $0$. Esto puede interpretarse como que cuando no se realiza ningún mantenimiento, tampoco se dedica ningún minuto.
+
+        \paragraph{}
+        Sin embargo, no tiene ningún sentido eliminar el estimador $\widehat{\beta}_0$ del modelo, puesto que su valor (muy próximo a cero pero no cero) permite que la recta haya sido ajustada a los datos de manera óptima, y su eliminación tan solo perjudicaría la minimización cuadrática del error del modelo.
 
     \setcounter{subsection}{13}
     \subsection{Refer to \textbf{Copier maintenance} Problem \ref{sec:e1-20}.}
@@ -290,7 +319,7 @@ than $14$ minutes for each additional copier that is serviced on a service call.
         [TODO ]
 
         \begin{align}
-          \widehat{Y}_h &= \widehat{\beta}_0 +\widehat{\beta}_16+ \epsilon_h = 89.6313\\
+          \widehat{Y}_h &= \widehat{\beta}_0 +\widehat{\beta}_16+ \varepsilon_h = 89.6313\\
           t_{n-2;1-\frac{\alpha}{2}} &= t_{43;0.95} = 1.681071\\
           Var\left[\widehat{Y}_h \right]  &= 1.9499
         \end{align}
@@ -308,7 +337,7 @@ than $14$ minutes for each additional copier that is serviced on a service call.
         [TODO ]
 
         \begin{align}
-          \widehat{Y}_{pred} &= \widehat{\beta}_0 +\widehat{\beta}_16 + \epsilon_i = 89.6313\\
+          \widehat{Y}_{pred} &= \widehat{\beta}_0 +\widehat{\beta}_16 + \varepsilon_i = 89.6313\\
           t_{n-2;1-\frac{\alpha}{2}} &= t_{43;0.95} = 1.681071\\
           Var\left[\widehat{Y}_{pred}\right] &= \widehat{\sigma}^2 + Var\left[\widehat{Y}_h \right]  =79.45063 + 1.9499 = 81.40053
         \end{align}
@@ -325,9 +354,11 @@ than $14$ minutes for each additional copier that is serviced on a service call.
 
     \setcounter{subsection}{23}
     \subsection{Refer to \textbf{Copier maintenance} Problem \ref{sec:e1-20}.}
+    \label{sec:copiers-2.24}
 
       \setcounter{subsubsection}{1}
       \subsubsection{Conduct an \emph{F-test} to determine whether or not there is a linear association between time spent and number of copiers serviced; use $\alpha = 0.1$. State the alternatives, decision rule, and conclusion.}
+      \label{sec:copiers-2.24b}
 
         \paragraph{}
         En este caso, se pide realizar un test de la $F$ para comprobar si existe relación de dependencia entre la variable dependiente $Y$ y la variable dependiente $X$. Por tanto, esto se puede modelar de la misma manera que se hizo en el apartado \ref{sec:copiers-2.5b} del ejercicio \ref{sec:copiers-2.5}.
@@ -376,11 +407,21 @@ than $14$ minutes for each additional copier that is serviced on a service call.
       \subsubsection{Calculate $r$ and attach the appropriate sign.}
 
         \paragraph{}
-        [TODO ]
+        En este apartado, se pide obtener el coeficiente de correlación entre las variables. Esta medida sirve para cuantizar el grado de relación entre variables, así como si esta relación es positiva o negativa. El coeficiente de correlación toma valores en el interva $[-1,1]$ indicando valores proximos al $1$ una relación lineal fuerte positiva y $-1$ una relación lineal fuerte negativa, mientras que los valores próximos al $0$ indican una relación débil entre las variables.
+
+        \paragraph{}
+        Este coeficiente se puede definir como $r=\frac{Cov[X,Y]}{\sqrt{Var[X]Var[Y]}}$, aunque en este caso se ha obtenido mediante la propiedad de la ecuación \eqref{eq:copier-maintante-corr-coef}. Cuando se utiliza esta ecuación es necesario ajustar el signo de manera \say{manual}, ya que el coeficiente de determinación $R^2$ tan solo toma valores positivos.
 
         \begin{equation}
-          r = + \sqrt{R^2} = 0.9785
+          \label{eq:copier-maintante-corr-coef}
+          r = \pm \sqrt{R^2} = + 0.9785
         \end{equation}
+
+        \paragraph{}
+        En este caso, tras analizar los resultados de la ecuación \eqref{eq:copier-maintante-corr-coef} y aplicar el signo positivo (basta con consultar el gráfico de la regresión de la figura \ref{img:copiers-regression-plot} para entender que la relación es positiva), podemos asegurar que existe una fuerte relación entra estas variables.
+
+        \paragraph{}
+        Este valor es coherente con la interpretación del conjunto de datos, que relaciona el tiempo de realización de un servicio (en este caso en minutos) con el número de unidades de trabajo que hay que desempeñar en dicho servicio (en este caso el número de copiadoras a las que realizar tareas de mantenimiento).
 
   \part{Ejercicios Montgomery:}
 
