@@ -71,9 +71,82 @@
 
   \subsubsection{Formar la tabla de análisis de varianza y probar el significado de la regresión.}
 
+  \paragraph{}
+  La tabla de análisis de la varianza se obtiene también mediante el procedimiento \textit{REG}.
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=.5\linewidth]{img/montgomery/anovatable.png}
+    \caption{Tabla de análisis de la varianza}
+    \label{img:mont-anova}
+  \end{figure}
+
+  \paragraph{}
+  Esta tabla nos permite obtener la suma de cuadrados del modelo y del error, lo cual nos da un modo alternativo de hacer el contraste sobre el coeficiente $\beta_1$. \textit{Mean Square} para el \textit{Error} es el estimador de la varianza $\sigma^2$ obtenida por el error aleatorio $\varepsilon$. Si se cumple la hipótesis $H_0: \beta_1=0$, \textit{Mean Square} para el \textit{Model} también es un estimador de la varianza $\sigma^2$. Por tanto
+
+  \begin{equation}
+    F = \frac{MSM}{MSE}
+  \end{equation}
+
+  \paragraph{}
+  es un estadístico que permite realizar el test de hipótesis sobre la hipótesis nula $H_0$. Esta tabla también nos proporciona el \textit{p-valor} para este contraste, que es menor que $0,05$, por lo que podemos rechazar la hipótesis, y afirmar que existe regresión con un 95\% de confianza.
+
   \subsubsection{Determinar un intervalo de confianza de 95\% para la pendiente.}
 
+  \paragraph{}
+  La pendiente es el parámetro $\beta_1$, y podemos obtener los intervalos de confianza para los parámetros mediante el procedimiento \textit{REG}, añadiendo la opción \textit{CLB} al modelo.
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=.6\linewidth]{img/montgomery/icestim.png}
+    \caption{Estimadores para los parámetros con intervalos de confianza del 95\%}
+  \end{figure}
+
+  \paragraph{}
+  El intervalo de confianza de la pendiente es el correspondiente al parámetro $x_8$, por lo que la pendiente se situa entre $-0.00961$ y $-0.00444$.
+
   \subsubsection{¿Qué porcentaje de variabilidad total da $y$, y explica este modelo?}
+
+  \paragraph{}
+  Para obtener la medida de variabilidad total de $y$ debemos volver a la tabla de análisis de varianza del apartado \textbf{b}:
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=.5\linewidth]{img/montgomery/anovatable.png}
+    \caption{Tabla de análisis de la varianza}
+    \label{img:mont-anova}
+  \end{figure}
+
+  \paragraph{}
+  Esta tabla nos da la \textit{Suma de cuadrados total}, que en este caso es igual a $326,96429$. Para obtener la variabilidad de la muestra, conocida como $MST$, se divide este valor por sus grados de libertad, que son $N-1$, siendo $N$ el número de observaciones.
+
+  \begin{equation}
+    MST = \frac{SST}{N-1} = \frac{326,96429}{27} = 12.109788519
+  \end{equation}
+
+  \paragraph{}
+  Este valor $MST$ es la variabilidad total de la muestra $\sigma_T^2$, parte de la cual intentamos explicar mediante el modelo de regresión lineal simple. Existirá otra parte explicada por el error aleatorio, $\sigma^2$.
+
+  \paragraph{}
+  Para calcular la cantidad de variabilidad que explica el modelo podemos calcular:
+
+  \begin{equation}
+    \frac{SS_{Modelo}}{SS_{Total}}
+  \end{equation}
+
+  \paragraph{}
+  Que es un coeficiente conocido como $R^2$, que también podemos obtener directamente con la siguiente tabla obtenida del procedimiento \textit{REG}:
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=.35\linewidth]{img/montgomery/tablaregaux.png}
+    \caption{Coeficientes de la Regresión Lineal Simple.}
+    \label{img:mont-tabla-aux}
+  \end{figure}
+
+  \paragraph{}
+  \textit{R-square} indica que el modelo de regresión explica un $54.47\%$ de la variabilidad. También puede interpretarse como un indicador de cómo de bien se ajustan los datos a la línea de regresión ajustada.
+
 
   \subsubsection{Determinar un intervalo de confianza de 95\% para la cantidad promedio de juegos ganados, si la distancia ganada por tierra por los contrarios se limita a 2000 yardas.}
 
