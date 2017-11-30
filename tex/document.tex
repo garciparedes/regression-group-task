@@ -435,6 +435,9 @@ than $14$ minutes for each additional copier that is serviced on a service call.
 
   \setcounter{section}{2}
   \subsection{En la tabla B.1 del apéndice aparecen datos sobre el desempeño de los 26 equipos de la Liga Nacional de Fútbol en 1976. Se cree que la cantidad de yardas ganadas por tierra por los contrarios ($x_8$) tiene un efecto sobre la cantidad de juegos que gana un equipo ($y$).}
+  \paragraph{}
+  Los datos se han importado del \emph{.xls} disponible en la página web de la asignatura, tras lo cual se ha realizado un preprocesado, eliminando del dataset las columnas $x_{1-7}$ y $x_9$, ya que estas no son necesarias para realizar el ejercicio. Esto se ha realizado mediante el fragmento de código \ref{code:sas-mont-1}.
+
   \subsubsection{Ajustar un modelo de regresión lineal simple que relacione los juegos ganados, $y$, con las yardas ganadas por tierra por los contrarios, $x_8$.}
 
   \begin{equation}
@@ -445,7 +448,7 @@ than $14$ minutes for each additional copier that is serviced on a service call.
   Analizaremos el modelo de la ecuación \ref{eq:simple-linear-regression-model} mediante un estudio de regresión lineal simple, con $y$ como variable dependiente, $x_8$ como variable independiente, $\beta_0$ el intercepto, y $\beta_1$ la pendiente. $\varepsilon$ es el error aleatorio.
 
   \paragraph{}
-  El procedimiento \textit{REG} permite estimar los valores del intercepto y la pendiente, y analizar las hipótesis nulas:
+  El fragmento de código \ref{code:sas-mont-2} permite estimar los valores del intercepto y la pendiente, y analizar las hipótesis nulas:
 
     \begin{align}
       H_0: \beta_0 = 0\\
@@ -464,7 +467,7 @@ than $14$ minutes for each additional copier that is serviced on a service call.
   \end{figure}
 
   \paragraph{}
-  Como podemos ver, el \textit{p-valor} para $\beta_1$ está por debajo de $0,05$, por lo que podemos rechazar la hipótesis nula con una confianza del 95\%. El \textit{p-valor} para el intercepto también permite rechazar la hipótesis nula.
+  Como podemos ver, el \textit{p-valor} para $\beta_1$ está por debajo de $0,05$, por lo que podemos rechazar la hipótesis nula con una confianza del 95\%, y podemos afirmar que existe regresión. El \textit{p-valor} para el intercepto también nos permite rechazar la hipótesis nula, que significaría que se puede ajustar un modelo sin intercepto.
 
   \paragraph{}
   Por tanto, los estimadores son:
@@ -478,11 +481,11 @@ than $14$ minutes for each additional copier that is serviced on a service call.
   Con la recta de regresión:
 
   \begin{equation}
-    y_i = 21.78825 -0.00703{x_8}_i + \varepsilon_i
+    \hat y_i = 21.78825 -0.00703{x_8}_i + \varepsilon_i
   \end{equation}
 
   \paragraph{}
-  La interpretación de estos parámetros es que con 0 yardas ganadas por el contrario, un equipo gana de media $21,78825$ juegos, y que por cada yarda que gana el contrario, el equipo pierde de media $0.00703$ juegos.
+  La interpretación de estos parámetros es que con 0 yardas ganadas por el contrario, un equipo gana de media $21,78825$ juegos, y que por cada yarda que gana el contrario, el equipo pierde de media $0.00703$ juegos. Esta pendiente puede parecer muy cercana a 0, pero debemos considerar que las muestras tienen una magnitud de \emph{miles de yardas}, por lo que la pendiente vale $7.03$ juegos perdidos, si se midiera $x_8$ en la unidad de \emph{miles de yardas}.
 
   \begin{figure}[H]
     \centering
@@ -491,10 +494,13 @@ than $14$ minutes for each additional copier that is serviced on a service call.
     \label{img:mont-fitplot}
   \end{figure}
 
+  \paragraph{}
+  El \emph{fitplot} nos permite analizar cómo de bien se ajusta la muestra a la recta de regresión hallada. Como podemos ver, la distribución de las muestras tiene una forma clara de recta. Podemos ver que los valores tienen bastante variabilidad, bastante mayor en los extremos que en el centro de la recta.
+
   \subsubsection{Formar la tabla de análisis de varianza y probar el significado de la regresión.}
 
   \paragraph{}
-  La tabla de análisis de la varianza se obtiene también mediante el procedimiento \textit{REG}.
+  La tabla de análisis de la varianza se obtiene también mediante el fragmento de código \ref{code:sas-mont-2}.
 
   \begin{figure}[H]
     \centering
@@ -504,19 +510,22 @@ than $14$ minutes for each additional copier that is serviced on a service call.
   \end{figure}
 
   \paragraph{}
-  Esta tabla nos permite obtener la suma de cuadrados del modelo y del error, lo cual nos da un modo alternativo de hacer el contraste sobre el coeficiente $\beta_1$. \textit{Mean Square} para el \textit{Error} es el estimador de la varianza $\sigma^2$ obtenida por el error aleatorio $\varepsilon$. Si se cumple la hipótesis $H_0: \beta_1=0$, \textit{Mean Square} para el \textit{Model} también es un estimador de la varianza $\sigma^2$. Por tanto
+  Esta tabla nos permite obtener la suma de cuadrados del modelo y del error, lo cual nos da un modo alternativo de hacer el contraste sobre el coeficiente $\beta_1$. \textit{Mean Square} para el \textit{Error} es el estimador de la varianza $\sigma^2$ cuando la muestra se trata de una sola población $y=\beta_0 +\varepsilon$. Si se cumple la hipótesis $H_0: \beta_1=0$, \textit{Mean Square} para el \textit{Model}, que estima la varianza con el modelo completo, también es un estimador de la varianza $\sigma^2$. Por tanto
 
   \begin{equation}
-    F = \frac{MSM}{MSE}
+    F = \frac{MSM}{MSE} = 31.10
   \end{equation}
 
   \paragraph{}
-  es un estadístico que permite realizar el test de hipótesis sobre la hipótesis nula $H_0$. Esta tabla también nos proporciona el \textit{p-valor} para este contraste, que es menor que $0,05$, por lo que podemos rechazar la hipótesis, y afirmar que existe regresión con un 95\% de confianza.
+  es un estadístico que permite realizar el test de hipótesis sobre la hipótesis nula $H_0$. Si este estadístico $F$ es mayor que la distribución $F$ con 1 y 26 grados de libertad, entonces podemos considerar que las sumas de errores medias son diferentes, y por tanto rechazar la hipótesis nula.
+
+  \paragraph{}
+  Esta tabla también nos proporciona el \textit{p-valor} para este contraste, es decir, $Pr(F(1;26)>31.1)$ que es menor que $0,0001$, por lo que podemos rechazar la hipótesis, y afirmar que existe regresión con un 95\% de confianza.
 
   \subsubsection{Determinar un intervalo de confianza de 95\% para la pendiente.}
 
   \paragraph{}
-  La pendiente es el parámetro $\beta_1$, y podemos obtener los intervalos de confianza para los parámetros mediante el procedimiento \textit{REG}, añadiendo la opción \textit{CLB} al modelo.
+  La pendiente es el parámetro $\beta_1$, y podemos obtener los intervalos de confianza para los parámetros mediante el fragmento de código \ref{code:sas-mont-2}, habiendo añadido la opción \textit{CLB} al modelo.
 
   \begin{figure}[H]
     \centering
@@ -525,7 +534,17 @@ than $14$ minutes for each additional copier that is serviced on a service call.
   \end{figure}
 
   \paragraph{}
-  El intervalo de confianza de la pendiente es el correspondiente al parámetro $x_8$, por lo que la pendiente se situa entre $-0.00961$ y $-0.00444$.
+  Estos intervalos se calculan mediante la siguiente fórmula:
+
+  \begin{align}
+    IC &= \left[ \hat\beta_1 \pm t_{1-\frac{\alpha}{2};n-2} \sqrt{Var[\hat\beta_1]} \right]\\
+    \sqrt{Var[\hat\beta_1]} = Standard Error(x_8) &= 0.00126\\
+    t_{1-\frac{\alpha}{2};n-2} = t_{0.975;26} &= -2.05552944\\
+    IC = \left[ -0.00703 \pm -2.05552944*0.001126 \right] &= [-0.009619967, -0.004440033]
+  \end{align}
+
+  \paragraph{}
+  Por tanto la pendiente de la recta de regresión está entre $-0.00961$ y $-0.00444$ con una confianza del 95\%.
 
   \subsubsection{?`Qué porcentaje de variabilidad total da $y$, y explica este modelo?}
 
@@ -556,7 +575,7 @@ than $14$ minutes for each additional copier that is serviced on a service call.
   \end{equation}
 
   \paragraph{}
-  Que es un coeficiente conocido como $R^2$, que también podemos obtener directamente con la siguiente tabla obtenida del procedimiento \textit{REG}:
+  Que es un coeficiente conocido como $R^2$, que también podemos obtener directamente con la siguiente tabla obtenida del fragmento de código \ref{code:sas-mont-2}:
 
   \begin{figure}[H]
     \centering
@@ -572,10 +591,10 @@ than $14$ minutes for each additional copier that is serviced on a service call.
   \subsubsection{Determinar un intervalo de confianza de 95\% para la cantidad promedio de juegos ganados, si la distancia ganada por tierra por los contrarios se limita a 2000 yardas.}
 
   \paragraph{}
-  Este apartado nos pide hacer una predicción de $y$ cuando $x_8=2000$. Este valor no se encuentra entre nuestras observaciones, pero si que está dentro del rango definido por el mínimo y el máximo de $x_8$ para las observaciones, por lo que podremos realizar esta predicción. Añadiremos manualmente a los datos una observación en la que solo rellenamos el valor de $x_8$. \textit{SAS} realizará la predicción sobre el valor de la variable dependiente $y$ para este valor de $x_8$ dado el modelo de regresión conseguido mediante las observaciones completas.
+  Este apartado nos pide hacer una predicción de $y$ cuando $x_8=2000$. Este valor no se encuentra entre nuestras observaciones, pero si que está dentro del rango definido por el mínimo y el máximo de $x_8$ para las observaciones, por lo que podremos realizar esta predicción. Añadiremos manualmente a los datos una observación en la que solo rellenamos el valor de $x_8$ mediante el fragmento de código \ref{code:sas-mont-3}. \textit{SAS} realizará la predicción sobre el valor de la variable dependiente $y$ para este valor de $x_8$ dado el modelo de regresión conseguido mediante las observaciones completas.
 
   \paragraph{}
-  Para mostrar los intervalos de confianza para las predicciones, añadimos la opción \textit{CLI} al modelo del procedimiento \textit{REG}.
+  Para mostrar los intervalos de confianza para las predicciones, utilizamos el fragmento de código \ref{code:sas-mont-4}, con la opción \textit{CLI} en el modelo.
 
   \begin{figure}[H]
     \centering
@@ -590,7 +609,7 @@ than $14$ minutes for each additional copier that is serviced on a service call.
   \subsection{Supóngase que se quiere usar el modelo desarrollado en el problema 2.1 para pronosticar la cantidad de juegos que ganará un equipo si puede limitar los avances por tierra de sus contrarios a 1800 yardas. Determinar un estimado de punto de la cantidad de juegos ganados cuando $x_8=1800$. Determinar un intervalo de predicción de $90$ por ciento para la cantidad de juegos ganados.}
 
   \paragraph{}
-  Como el apartado \textbf{2.1.e}, este ejercicio requiere hacer una predicción de $y$. El valor de $x_8$ pedido no está en las observaciones, pero se encuentra en el rango definido por el mínimo y el máximo de observaciones para $x_8$. Añadimos una observación con valor $x_8=1800$, al igual que hicimos para el anterior apartado, para el cual \textit{SAS} realizará una predicción de $y$ dado el modelo de regresión simple. Para conseguir el intervalo del 90\% de confianza, definimos en las opciones del modelo el \textit{ALPHA} como igual a $0.1$.
+  Como el apartado \textbf{2.1.e}, este ejercicio requiere hacer una predicción de $y$. El valor de $x_8$ pedido no está en las observaciones, pero se encuentra en el rango definido por el mínimo y el máximo de observaciones para $x_8$. Añadimos una observación con valor $x_8=1800$, al igual que hicimos para el anterior apartado, con el fragmento de código \ref{code:sas-mont-4} para el cual \textit{SAS} realizará una predicción de $y$ dado el modelo de regresión simple. Para conseguir el intervalo del 90\% de confianza, definimos en las opciones del modelo el \textit{ALPHA} como igual a $0.1$.
 
   \begin{figure}[H]
     \centering
@@ -601,7 +620,6 @@ than $14$ minutes for each additional copier that is serviced on a service call.
 
   \paragraph{}
   El estimado de punto es $9,1431$ juegos ganados, y el intervalo nos permite afirmar con un 90\% de confianza que el valor real está entre $4,9364$ y $13,3497$ juegos ganados.
-
 
   \part{Código Fuente}
 
