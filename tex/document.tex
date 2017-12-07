@@ -222,9 +222,9 @@
         \begin{equation}
         \label{eq:copiers-beta1-p-value}
           \text{p-value}
-          = 2Pr\left[\abs{\frac{\widehat{\beta}_1 - 0}{\sqrt{Var\left[\widehat{\beta}_1\right]}}} > t_{n-2}\right]
-          = 2Pr\left[\frac{15.03525}{0.48309} > t_{43}\right]
-          = 2Pr\left[31.12 > t_{43}\right]
+          = 2Pr\left[t_{n-2} > \abs{\frac{\widehat{\beta}_1 - 0}{\sqrt{Var\left[\widehat{\beta}_1\right]}}}\right]
+          = 2Pr\left[t_{43} > \frac{15.03525}{0.48309}\right]
+          = 2Pr\left[t_{43} > 31.12\right]
           < 0.0001
         \end{equation}
 
@@ -259,9 +259,9 @@ than $14$ minutes for each additional copier that is serviced on a service call.
         \begin{equation}
           \label{eq:copiers-beta1-p-value-interval}
             \text{p-value}
-            = Pr\left[\frac{\widehat{\beta}_1 - 14}{\sqrt{Var\left[\widehat{\beta}_1\right]}} > t_{n-2}\right]
-            = Pr\left[\frac{1.03525}{0.48309} > t_{43}\right]
-            = Pr\left[2.14297 > t_{43}\right]
+            = Pr\left[t_{n-2} > \frac{\widehat{\beta}_1 - 14}{\sqrt{Var\left[\widehat{\beta}_1\right]}}\right]
+            = Pr\left[t_{43} > \frac{1.03525}{0.48309}\right]
+            = Pr\left[t_{43} > 2.14297\right]
             = 0.01890824
         \end{equation}
 
@@ -288,9 +288,9 @@ than $14$ minutes for each additional copier that is serviced on a service call.
         \begin{equation}
           \label{eq:copiers-beta0-p-value}
             \text{p-value}
-            = 2Pr\left[\abs{\frac{\widehat{\beta}_0 - 0}{\sqrt{Var\left[\widehat{\beta}_0\right]}}} > t_{n-2}\right]
-            = 2Pr\left[\abs{\frac{-0.58016}{2.80394}} > t_{43}\right]
-            = 2Pr\left[\abs{-0.21} > t_{43} \right]
+            = 2Pr\left[t_{n-2} > \abs{\frac{\widehat{\beta}_0 - 0}{\sqrt{Var\left[\widehat{\beta}_0\right]}}}\right]
+            = 2Pr\left[t_{43} > \abs{\frac{-0.58016}{2.80394}}\right]
+            = 2Pr\left[t_{43} > 0.21\right]
             = 0.8371
         \end{equation}
 
@@ -393,9 +393,9 @@ than $14$ minutes for each additional copier that is serviced on a service call.
 
         \begin{equation}
         \label{eq:copiers-f-test-p-value}
-          \text{p-value} = Pr\left[\frac{MSM}{MSE} > F_{1;n-2}\right] =
-          Pr\left[\frac{76960}{79.45063} > F_{1;43}\right] =
-          Pr\left[968.66 > F_{1;43}\right] <
+          \text{p-value} = Pr\left[F_{1;n-2} > \frac{MSM}{MSE}\right] =
+          Pr\left[F_{1;43} > \frac{76960}{79.45063}\right] =
+          Pr\left[F_{1;43} > 968.66\right] <
           0.0001
         \end{equation}
 
